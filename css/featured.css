@@ -1,0 +1,99 @@
+/* --- MODERN SLIDER TASARIMI (GÖRSELDEKİ GİBİ) --- */
+
+.slider-wrapper {
+    position: relative;
+    padding: 0 20px; /* Butonlar için kenar payı */
+}
+
+/* Kayan Alan */
+#product-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px; /* Ürünler arası boşluk */
+    padding-bottom: 20px; /* Scrollbar gizleme payı */
+
+    /* Scrollbar Gizle */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+#product-scroll-container::-webkit-scrollbar { display: none; }
+
+/* Ürün Kartı */
+.slider-product-card {
+    min-width: 450px; /* Kart Genişliği */
+    max-width: 450px;
+    cursor: pointer;
+    flex-shrink: 0; /* Sıkışmayı önler */
+    background: transparent; /* Arka plan yok */
+}
+
+/* Görsel Alanı (Gri Fonlu) */
+.slider-img-box {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Dikey Dikdörtgen */
+    background-color: #f4f4f4; /* O gri ton */
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.slider-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resmi kutuya doldur */
+    mix-blend-mode: multiply; /* Beyaz arka planı griyle kaynaştırır (Varsa) */
+    transition: transform 0.5s ease;
+}
+
+.slider-product-card:hover img {
+    transform: scale(1.05); /* Hafif Zoom */
+}
+
+/* Yön Butonları (Beyaz Yuvarlak) */
+.slider-nav-btn {
+    position: absolute;
+    top: 40%; /* Görselin ortasına denk gelsin */
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.2s;
+}
+.slider-nav-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.btn-prev { left: 10px; }
+.btn-next { right: 10px; }
+
+/* Fiyat Tasarımı */
+.current-price-red {
+    color: #d32f2f; /* Kırmızı */
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+.discount-box-red {
+    background-color: #d32f2f;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+.old-price-gray {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 2px;
+}

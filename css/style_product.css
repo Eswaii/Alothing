@@ -1,0 +1,275 @@
+body { font-family: 'Inter', system-ui, sans-serif; color: #111; }
+
+/* SOL TARAF: RESİM IZGARASI */
+.product-grid-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 3 / 4; /* Dikdörtgen oranı */
+    cursor: zoom-in;
+}
+
+/* SAĞ TARAF: SABİT MENÜ */
+.product-sidebar {
+    position: sticky;
+    top: 100px; /* Üstten boşluk */
+    height: fit-content;
+    padding-left: 20px;
+    z-index: 900;
+}
+
+/* SEPETE EKLE BUTONU */
+.btn-green {
+    background-color: #007f5f; /* Görseldeki yeşil ton */
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 0;
+    padding: 14px;
+    transition: background 0.2s;
+}
+.btn-green:hover { background-color: #005f46; color: white; }
+
+/* SEÇENEK BUTONLARI (Petite, Regular, Tall) */
+.size-option-input { display: none; }
+.size-option-label {
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: all 0.2s;
+}
+.size-option-input:checked + .size-option-label {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+}
+
+/* BİLGİ KUTULARI */
+.info-box-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: -1px; /* Çizgileri birleştir */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: #fff;
+}
+.info-box-item:first-child { border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.info-box-item:last-child { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+
+
+.promo-badge {
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* MOBİL UYUMU */
+@media (max-width: 991px) {
+    .product-sidebar { position: static; padding-left: 0; margin-top: 30px; }
+}
+/* RENK SEÇİM TOPLARI */
+.color-option {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ddd; /* Hafif çerçeve */
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+/* Seçili Renk Efekti (Dışına halka ekler) */
+.color-option.active {
+    border-color: transparent;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000; /* Çift katmanlı gölge ile halka efekti */
+}
+
+/* BEDEN SEÇİM YUVARLAKLARI */
+.size-option {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.size-option:hover {
+    border-color: #000;
+}
+.size-option.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* BOY SEÇİM (Hap Şeklinde) */
+.length-option {
+    padding: 8px 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px; /* Hap şekli */
+    background: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.length-option.active {
+    border-color: #000;
+    background-color: #fff; /* Bershka'da seçili olunca sadece border kalınlaşır genelde, ama siyah da yapabiliriz */
+    box-shadow: inset 0 0 0 1px #000; /* Kalın çerçeve efekti */
+}
+/* İNDİRİMLİ FİYAT TASARIMI */
+.price-container {
+display: flex;
+align-items: center;
+gap: 10px; /* Elemanlar arası boşluk */
+font-family: 'Inter', sans-serif;
+margin-bottom: 15px;
+}
+
+.new-price {
+color: #d32f2f; /* Kırmızı */
+font-size: 1.25rem;
+font-weight: 700;
+}
+
+.discount-tag {
+background-color: #d32f2f; /* Kırmızı Kutu */
+color: white;
+font-size: 0.85rem;
+font-weight: 600;
+padding: 2px 6px;
+border-radius: 2px;
+}
+
+.old-price-del {
+text-decoration: line-through; /* Üstü çizili */
+color: #333; /* Siyah/Koyu Gri */
+font-size: 1rem;
+font-weight: 400;
+}
+.sticky-product-bar {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 80px;
+background: white;
+border-top: 1px solid #eee;
+z-index: 1040; /* Footer üstünde, modal altında */
+box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+
+/* Animasyon */
+transform: translateY(100%); /* Başlangıçta gizli */
+transition: transform 0.3s ease-in-out;
+}
+
+.sticky-product-bar.visible {
+transform: translateY(0); /* Görünür */
+}
+
+.sticky-thumb {
+width: 50px;
+height: 60px;
+object-fit: cover;
+border-radius: 4px;
+}
+
+.color-dot-sm {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+display: inline-block;
+border: 1px solid #ddd;
+}
+/* === STICKY ADD TO CART BAR (KOMPAKT MENÜ) === */
+.sticky-product-bar {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 85px; /* Bar yüksekliği */
+background: #fff;
+border-top: 1px solid #e0e0e0;
+z-index: 1040; /* Footer ve diğer her şeyin üstünde */
+box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+display: flex;
+align-items: center;
+
+/* Animasyon: Başlangıçta ekranın dışında (aşağıda) */
+transform: translateY(100%);
+transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Yumuşak geçiş */
+}
+
+/* Bu sınıf JS ile eklendiğinde bar yukarı kayar */
+.sticky-product-bar.visible {
+transform: translateY(0);
+}
+
+.sticky-thumb {
+width: 50px;
+height: 60px;
+object-fit: cover;
+border-radius: 4px;
+}
+
+/* Kırmızı İndirim Kutusu */
+.badge-red {
+background-color: #d32f2f;
+color: white;
+font-size: 0.75rem;
+font-weight: 700;
+padding: 3px 6px;
+border-radius: 2px;
+}
+
+/* Renk Topu */
+.sticky-color-dot {
+width: 16px;
+height: 16px;
+border-radius: 50%;
+border: 1px solid #ccc;
+display: inline-block;
+}
+
+/* Sepete Ekle Butonu (Yeşil) */
+.btn-sticky-green {
+background-color: #007f5f;
+color: white;
+font-weight: 700;
+border: none;
+padding: 10px 30px;
+transition: background 0.2s;
+}
+.btn-sticky-green:hover { background-color: #00664c; color: white; }
+
+/* Beden Seç Butonu (Beyaz) */
+.btn-sticky-outline {
+background-color: white;
+color: #000;
+border: 1px solid #ccc;
+font-weight: 600;
+padding: 10px 30px;
+}
+/* Hover Efektleri */
+.product-card:hover img {
+transform: scale(1.03); /* Resim hafif büyür */
+}
+
+.product-card:hover .size-selector-overlay {
+transform: translateY(0) !important; /* Beden seçimi yukarı çıkar */
+opacity: 1 !important;
+}

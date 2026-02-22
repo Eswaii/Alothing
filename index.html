@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!--CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row text-center ">
+          <h1><b>ALOTHING</b></h1>
+      </div>
+      <div class="row justify-content-center gx-0">
+        <div class="col-md-5">
+          <div class="card image-card">
+            <a href="kadinAnasayfa.html" class="image-box"><img id="gunluk-resim-giris-kadin" src="images/giris/kadin_2.jpg" class="img-fluid rounded shadow" alt="">
+              <div class="overlay-text">
+                <span class="sub-title">MODA BÖLÜMÜNE GİT</span>
+                <span class="main-title">KADIN</span>
+              </div>
+          </a>
+        </div>
+      </div>
+        <div class="col-md-5">
+          <div class="card image-card">
+            <a href="erkekAnasayfa.html" class="image-box"><img id="gunluk-resim-giris-erkek" src="images/giris/erkek_2.jpg" class="img-fluid rounded shadow" alt="">
+              <div class="overlay-text">
+                <span class="sub-title">MODA BÖLÜMÜNE GİT</span>
+                <span class="main-title">ERKEK</span>
+              </div>
+          </a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+  const resimListesi2 = [
+    "images/giris/kadin.jpg",
+    "images/giris/kadin_2.jpg",
+    "images/giris/kadin_3.jpg"
+  ];
+  // 2. Bugunun tarihini al (Ayın kaçı?)
+  const bugun2 = new Date();
+  const gun2 = bugun2.getDate(); // 1 ile 31 arası sayı verir
+
+  // 3. Gün sayısını resim sayısına bölüp kalanı bul (Mod alma)
+  // Bu sayede liste bitse bile başa döner (Döngü sağlar)
+  const resimIndeksi2 = gun2 % resimListesi2.length;
+
+  // 4. Resmi değiştir
+  const resimElementi2 = document.getElementById("gunluk-resim-giris-kadin");
+  if (resimElementi2) {
+      resimElementi2.src = resimListesi2[resimIndeksi2];
+  }
+  });
+  document.addEventListener("DOMContentLoaded", function() {
+    // 1. Resim listeniz
+    const resimListesi = [
+      "images/giris/erkek.jpg",
+      "images/giris/erkek_2.jpg",
+      "images/giris/erkek_3.jpg",
+    ];
+
+
+    // 2. Bugunun tarihini al (Ayın kaçı?)
+    const bugun = new Date();
+    const gun = bugun.getDate(); // 1 ile 31 arası sayı verir
+
+    // 3. Gün sayısını resim sayısına bölüp kalanı bul (Mod alma)
+    // Bu sayede liste bitse bile başa döner (Döngü sağlar)
+    const resimIndeksi = gun % resimListesi.length;
+
+    // 4. Resmi değiştir
+    const resimElementi = document.getElementById("gunluk-resim-giris-erkek");
+    if (resimElementi) {
+        resimElementi.src = resimListesi[resimIndeksi];
+    }
+  });
+      </script>
+  </body>
+</html>
+<!-- ================= JS (LOCAL) ================= -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/lightbox-plus-jquery.min.js"></script>
+<script src="js/lightbox.min.js"></script>
