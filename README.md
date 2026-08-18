@@ -1,5 +1,7 @@
 <div align="center">
 
+<a href="README.tr.md"><img src="https://img.shields.io/badge/Türkçe_README-→-111111?style=for-the-badge&labelColor=111111&color=D6B36A" alt="Türkçe README" /></a>
+
 <img src="images/giris/kadin_2.jpg" alt="ALOTHING fashion storefront" width="48%" />
 <img src="images/giris/erkek_2.jpg" alt="ALOTHING men's collection" width="48%" />
 
