@@ -377,7 +377,7 @@ Repository: [https://github.com/Eswaii/Alothing]
 
 ## 📄 License
 
-This project is intended strictly for educational purposes and personal learning. No license is granted to copy, modify, distribute, use, or deploy this project for commercial, profit-driven, or official website templates without the author's prior written permission. It is solely meant for enthusiasts and individuals looking to improve their development skills. Third-party components, including Bootstrap, Lightbox, Chart.js, and PHPMailer, remain subject to their respective licenses.
+This project is provided for educational, personal, and other non-commercial purposes. You may use, copy, modify, and share the project, provided that the use is not intended to generate profit and that this license notice and attribution are retained. You may not sell this project or derivatives of it, use it for a paid service, deploy it for a commercial business or official website template, or otherwise use it for commercial purposes without the author's prior written permission. Third-party components, including Bootstrap, Lightbox, Chart.js, and PHPMailer, remain subject to their respective licenses. See the [LICENSE](LICENSE) file for the complete terms.
 
 Copyright © 2026 Yasin Şahin. All rights reserved.
 
