@@ -11,664 +11,170 @@
   <link rel="stylesheet" href="css/style_product.css">
 </head>
 <body>
-  <div id="header-wrapper">
-    <!-- Top Banner -->
-    <div class="bg-black text-white text-center py-2 small tracking-wider">
-      <div class="marquee-track small tracking-wider">
-          <!-- 1. GRUP YAZILAR -->
-          <span class="mx-5">ÜCRETSİZ KARGO | 500 TL VE ÜZERİ ALIŞVERİŞLERDE</span>
-          <span class="mx-5">❄️ KIŞ İNDİRİMLERİ BAŞLADI</span>
+  <div id="navbar-placeholder"></div>
+  <!-- TAM EKRAN SLIDER BÖLÜMÜ -->
+    <section class="hero-slider-section">
 
-          <!-- 2. GRUP YAZILAR (BİREBİR KOPYASI - LOOP İÇİN GEREKLİ) -->
-          <span class="mx-5">ÜCRETSİZ KARGO | 500 TL VE ÜZERİ ALIŞVERİŞLERDE</span>
-          <span class="mx-5">❄️ KIŞ İNDİRİMLERİ BAŞLADI</span>
-
-          <span class="mx-5">ÜCRETSİZ KARGO | 500 TL VE ÜZERİ ALIŞVERİŞLERDE</span>
-          <span class="mx-5">❄️ KIŞ İNDİRİMLERİ BAŞLADI</span>
-
-          <span class="mx-5">ÜCRETSİZ KARGO | 500 TL VE ÜZERİ ALIŞVERİŞLERDE</span>
-          <span class="mx-5">❄️ KIŞ İNDİRİMLERİ BAŞLADI</span>
+      <!-- Sürüklenebilir Resim Alanı -->
+      <div class="slider-track" id="slider-track">
+        <!-- Resimler JS ile gelecek. Beklerken boş durmasın diye yükleniyor yazısı: -->
+        <div style="width: 100vw; display:flex; align-items:center; justify-content:center;">
+            <p class="text-muted">Yükleniyor...</p>
+        </div>
       </div>
-    </div>
 
-    <!-- Main Header -->
-    <header id="main-header" class="bg-white border-bottom transition-all">
+      <!-- Alt Orta Kontrol Butonları -->
+      <div class="slider-controls">
+        <button id="fullscreen-btn" title="Tam Ekran">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="black" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 1v4m0 0h-4m4 0l-5-5"/></svg>
+        </button>
+        <button id="play-pause-btn" title="Durdur/Oynat">
+          <!-- Durdur İkonu (Varsayılan) -->
+          <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+          <!-- Oynat İkonu (Gizli) -->
+          <svg id="play-icon" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>
+        </button>
+      </div>
 
-      <!-- Desktop Navbar -->
-      <nav class="navbar navbar-expand-lg bg-white p-0 d-none d-lg-block">
-        <div class="container-fluid px-4">
+      <!-- SAĞ ALT YÜZEN BİLGİ PANELİ -->
+      <div class="floating-info-panel">
 
-          <div class="d-flex w-100 align-items-center justify-content-between">
-
-            <!-- Left Nav (Links & Mega Menu) -->
-            <ul class="navbar-nav d-flex flex-row gap-3">
-              <!-- KADIN MENU -->
-              <li class="nav-item dropdown">
-                <a class="nav-link tracking-wider" href="kadinAnasayfa.html" id="womenDropdown" role="button" aria-expanded="false">
-                  KADIN
-                </a>
-                <div class="dropdown-menu mega-menu" aria-labelledby="womenDropdown">
-                  <div class="container-fluid px-5 py-4">
-                    <div class="row">
-                      <div class="col-3">
-                        <h6 class="category-title-nav">KATEGORİLER</h6>
-                        <a href="category.html?cat=wceket" class="mega-link">Ceketler ve Montlar</a>
-                        <a href="category.html?cat=elbise" class="mega-link">Elbiseler</a>
-                        <a href="category.html?cat=wsweatshirt" class="mega-link">Sweatshirt ve Hoodieler</a>
-                        <a href="category.html?cat=wkazak" class="mega-link">Kazaklar ve Hırkalar</a>
-                        <a href="category.html?cat=bluz" class="mega-link">Bluzlar</a>
-                        <a href="category.html?cat=wtisort" class="mega-link">Tişörtler</a>
-                        <a href="category.html?cat=crop" class="mega-link">Croplar</a>
-                        <a href="category.html?cat=abiye" class="mega-link">Abiyeler</a>
-                      </div>
-                      <div class="col-3">
-                        <h6 class="category-title-nav">ALT GİYİM</h6>
-                        <a href="category.html?cat=wkot-pantolon" class="mega-link">Kot Pantolonlar</a>
-                        <a href="category.html?cat=wpantolon" class="mega-link">Pantolonlar</a>
-                        <a href="category.html?cat=tayt" class="mega-link">Taytlar</a>
-                        <a href="category.html?cat=wsort" class="mega-link">Şortlar</a>
-                        <a href="category.html?cat=etek" class="mega-link">Etekler</a>
-                      </div>
-                      <div class="col-3">
-                        <h6 class="category-title-nav">AKSESUAR</h6>
-                        <a href="category.html?cat=wayakkabi" class="mega-link">Ayakkabılar</a>
-                        <a href="category.html?cat=canta" class="mega-link">Çantalar</a>
-                        <a href="category.html?cat=wsapka" class="mega-link">Şapkalar</a>
-                      </div>
-                      <div class="col-3 text-end">
-                        <img src="https://static.bershka.net/assets/public/c23c/1d52/7c8b4a4f8b96/32c2412a240c/04318375251-a5o/04318375251-a5o.jpg?ts=1739526786498&w=563" alt="" class="img-fluid" style="height: 300px; object-fit: cover;">
-                      </div>
-                      <hr class="dropdown-divider">
-          <!-- İndirim Linki (Kırmızı) -->
-              <a class="dropdown-item text-danger fw-bold" href="category.html?cat=windirim">İNDİRİM</a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- ERKEK MENU -->
-              <li class="nav-item dropdown">
-                <a class="nav-link tracking-wider" href="erkekAnasayfa.html" id="menDropdown">
-                  ERKEK
-                </a>
-                <div class="dropdown-menu mega-menu">
-                  <div class="container-fluid px-5 py-4">
-                    <div class="row">
-                      <div class="col-3">
-                        <h6 class="category-title-nav">KATEGORİLER</h6>
-                        <a href="category.html?cat=ceket" class="mega-link">Ceketler ve Montlar</a>
-                        <a href="category.html?cat=sweatshirt" class="mega-link">Sweatshirt ve Hoodieler</a>
-                        <a href="category.html?cat=kazak" class="mega-link">Kazaklar ve Hırkalar</a>
-                        <a href="category.html?cat=tisort" class="mega-link">Tişörtler</a>
-                        <a href="category.html?cat=gomlek" class="mega-link">Gömlekler</a>
-                      </div>
-                      <div class="col-3">
-                        <h6 class="category-title-nav">ALT GİYİM</h6>
-                        <a href="category.html?cat=kot-pantolon" class="mega-link">Kot Pantolonlar</a>
-                        <a href="category.html?cat=pantolon" class="mega-link">Pantolonlar</a>
-                        <a href="category.html?cat=sort" class="mega-link">Şortlar</a>
-                      </div>
-                      <div class="col-3">
-                        <h6 class="category-title-nav">AKSESUAR</h6>
-                        <a href="category.html?cat=ayakkabi" class="mega-link">Ayakkabılar</a>
-                        <a href="category.html?cat=sapka" class="mega-link">Şapkalar</a>
-                      </div>
-                      <div class="col-3 text-end">
-                        <img src="https://static.bershka.net/assets/public/7e6a/12c9/95f14e22b6ab/e79013e14831/04795517800-a4o/04795517800-a4o.jpg?ts=1738664156498&w=563" alt="" class="img-fluid" style="height: 300px; object-fit: cover;">
-                      </div>
-                      <hr class="dropdown-divider">
-          <!-- İndirim Linki (Kırmızı) -->
-              <a class="dropdown-item text-danger fw-bold" href="category.html?cat=indirim">İNDİRİM</a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-
-            <!-- Logo Center -->
-            <a class="navbar-brand position-absolute top-50 start-50 translate-middle fs-4 fw-bold tracking-widest text-black" href="#">
-              ALOTHING
-            </a>
-
-            <!-- Right Nav (Icons) -->
-            <div class="d-flex gap-3 align-items-center">
-              <!-- Search Toggle -->
-              <button class="btn border-0 p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchPanel">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-
-              <!-- PROFİL İKONU (Giriş Paneline Bağlı) -->
-              <a href="#" class="btn border-0 p-1 text-black" onclick="checkProfileAuth(event)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </a>
-
-  <!-- FAVORİLER İKONU -->
-  <a href="#" class="btn border-0 p-1 text-black">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        <!-- Başlık ve Favori İkonu -->
+        <div class="fp-header">
+          <div class="fp-title-area">
+            <h1 id="p-name" class="fp-title">...</h1>
+            <div id="p-price" class="fp-price-box">...</div>
+          </div>
+          <button class="fp-wishlist-btn" onclick="toggleFavorite()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" class="bookmark-icon">
+        <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
     </svg>
-  </a>
+  </button>
+        </div>
 
-  <!-- SEPET İKONU -->
-  <a href="#" class="btn border-0 p-1 text-black position-relative">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-    </svg>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-black text-white" style="font-size: 0.6rem;">0</span>
-  </a>
-            </div>
+        <!-- Renk Seçimi -->
+        <div class="fp-color-section">
+          <div id="color-container" class="fp-color-squares"></div>
+          <div class="fp-color-ref">
+            <span id="color-name">...</span> · REF. <span id="p-ref">0000/000</span>
           </div>
         </div>
-      </nav>
 
-      <!-- Mobile Navbar -->
-      <nav class="navbar bg-white p-2 d-lg-none">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-          <!-- Hamburger Trigger -->
-          <button class="btn border-0 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+        <hr class="fp-divider">
 
-          <!-- Logo -->
-          <a class="navbar-brand fw-bold tracking-widest fs-5 m-0" href="#">ALOTHING</a>
-
-          <!-- Cart -->
-          <a href="#" class="btn border-0 p-2 position-relative">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-black text-white" style="font-size: 0.6rem; transform: translate(-50%, 10%) !important;">2</span>
-          </a>
+        <!-- Beden Seçimi -->
+        <div class="fp-size-section">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="fp-small-title">BEDENLER</span>
+            <a href="#" onclick="openSizeGuide(event)" class="text-decoration-underline text-muted small">Ölçüleri Gör</a>
+          </div>
+          <div id="size-container" class="fp-sizes">
+            <!-- JS ile dolacak -->
+          </div>
+          <div id="model-info" class="fp-model-info">Modelin boyu: 188 cm / bedeni: L</div>
         </div>
-      </nav>
-    </header>
+
+        <!-- Sepete Ekle -->
+        <button class="fp-add-to-cart">SEPETE EKLE</button>
+
+        <!-- Alt Bilgiler -->
+        <div class="fp-footer-info">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h-9a.5.5 0 0 1-.5-.5V9a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5-.5v4.5a.5.5 0 0 1-1 0V9a.5.5 0 0 1 .5-.5z"/></svg>
+            <span style="font-size: 0.75rem;">Mağazadan teslim alma ÜCRETSİZ</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-4 0 1 1 0 0 1-1-1v-1H2a2 2 0 0 1-2-2V3.5zm12 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+            <span style="font-size: 0.75rem;">2.599 TL ve üstü siparişlerde kargo ÜCRETSİZ</span>
+          </div>
+          <hr class="fp-divider" style="margin: 15px 0 10px 0;">
+
+          <div class="d-flex justify-content-between align-items-center" onclick="openCommentsOffcanvas()" style="padding: 8px 0; cursor: pointer; opacity: 0.75; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.75'">
+              <span class="m-0" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;">MÜŞTERİ YORUMLARI</span>
+              <div class="d-flex align-items-center gap-2">
+                  <span class="fw-bold text-dark" id="avgRatingDisplay" style="font-size: 0.8rem;">--/5</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+        </div>
+
+        </div>
+      </div>
+    </section>
+  <!-- STICKY ADD TO CART BAR -->
+  <div id="premium-sticky-bar" class="premium-sticky-bar">
+    <div class="psb-inner">
+      <div class="psb-info">
+          <img id="psb-img" class="psb-img" src="" alt="">
+          <div class="psb-title-box">
+             <h4 id="psb-title" class="psb-title">ÜRÜN ADI</h4>
+             <span id="psb-color" class="psb-color">RENK</span>
+          </div>
+          <div class="psb-divider"></div>
+          <div id="psb-price" class="psb-price">0.00 TL</div>
+        </div>
+
+      <div class="psb-actions">
+        <div id="psb-sizes-container" class="psb-sizes">
+          </div>
+        <button id="psb-add-btn" class="psb-btn">SEPETE EKLE</button>
+        <button class="psb-fav-btn" onclick="toggleFavorite()">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" class="bookmark-icon">
+               <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+           </svg>
+        </button>
+      </div>
+    </div>
   </div>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="commentsOffcanvas" style="width: 400px; border-left: none; box-shadow: -5px 0 25px rgba(0,0,0,0.05);">
+        <div class="offcanvas-header border-bottom px-4 py-3">
+            <h5 class="offcanvas-title fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 1rem;">Değerlendirmeler</h5>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"></button>
+        </div>
 
-    <!-- Search Panel (Offcanvas Top) -->
-    <div class="offcanvas offcanvas-top h-auto" tabindex="-1" id="searchPanel" aria-labelledby="searchPanelLabel">
-      <div class="offcanvas-body p-4">
-        <div class="container">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <span class="fw-bold tracking-wider small">ARAMA</span>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-
-          <div class="position-relative mb-4">
-            <input type="text" class="form-control border-0 border-bottom border-dark rounded-0 fs-4 py-2 shadow-none" placeholder="Ne arıyorsun?">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="position-absolute top-50 end-0 translate-middle-y text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-
-          <div class="mt-4">
-            <span class="text-muted small tracking-wider d-block mb-3">POPÜLER ARAMALAR</span>
-            <div class="d-flex flex-wrap gap-2">
-              <a href="#" class="btn btn-light btn-sm rounded-0 px-3 py-2">Ceket</a>
-              <a href="#" class="btn btn-light btn-sm rounded-0 px-3 py-2">Kot Pantolon</a>
-              <a href="#" class="btn btn-light btn-sm rounded-0 px-3 py-2">Sweatshirt</a>
-              <a href="#" class="btn btn-light btn-sm rounded-0 px-3 py-2">Elbise</a>
+        <div class="offcanvas-body p-0 d-flex flex-column">
+            <div class="flex-grow-1 overflow-auto p-4" id="commentsList">
+                <div class="text-center text-muted small py-5">Yorumlar yükleniyor...</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Mobile Menu (Offcanvas Left) -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-      <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title tracking-wider fw-bold" id="mobileMenuLabel">MENÜ</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body p-0">
-        <!-- Mobile Search -->
-        <div class="p-3">
-          <div class="position-relative">
-            <input type="text" class="form-control rounded-0 shadow-none" placeholder="Ara...">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="position-absolute top-50 end-0 translate-middle-y me-3 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- Accordion Categories -->
-        <div class="accordion accordion-flush" id="mobileAccordion">
-
-          <!-- Kadın -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed fw-medium tracking-wider shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWomen">
-                KADIN
-              </button>
-            </h2>
-            <div id="collapseWomen" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
-              <div class="accordion-body bg-light p-0">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Ceketler ve Montlar</a></li>
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Elbiseler</a></li>
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Sweatshirt</a></li>
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Kot Pantolonlar</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Erkek -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed fw-medium tracking-wider shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMen">
-                ERKEK
-              </button>
-            </h2>
-            <div id="collapseMen" class="accordion-collapse collapse" data-bs-parent="#mobileAccordion">
-              <div class="accordion-body bg-light p-0">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Ceketler ve Montlar</a></li>
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Tişörtler</a></li>
-                  <li class="list-group-item bg-transparent border-0"><a href="#" class="text-decoration-none text-muted small">Gömlekler</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- İndirim Linki -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <a href="#" class="accordion-button collapsed text-decoration-none fw-medium tracking-wider text-danger shadow-none after-none" style="background:none;">
-                İNDİRİM
-              </a>
-            </h2>
-          </div>
-        </div>
-
-        <!-- Footer Links Mobile -->
-        <div class="mt-4 px-3 d-flex flex-column gap-3">
-          <a href="#" class="text-decoration-none text-secondary d-flex align-items-center gap-2 small">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-            Hesabım
-          </a>
-          <a href="#" class="text-decoration-none text-secondary d-flex align-items-center gap-2 small">
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-            Favorilerim
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- LOGIN / REGISTER OFFCANVAS (PHP BAĞLANTILI) -->
-    <div class="offcanvas offcanvas-end login-offcanvas-premium" tabindex="-1" id="loginOffcanvas">
-
-        <!-- Üst Kısım: Sekmeler ve Kapatma -->
-        <div class="offcanvas-header pt-5 px-5 pb-0 d-flex justify-content-between align-items-end">
-            <div class="d-flex gap-4">
-                <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">GİRİŞ YAP</button>
-                <button class="tab-btn" id="tab-register" onclick="switchTab('register')">KAYIT OL</button>
-            </div>
-            <button type="button" class="btn-close-custom" data-bs-dismiss="offcanvas">
-                <svg width="24" height="24" fill="none" stroke="white" viewBox="0 0 24 24"><path stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-        </div>
-
-        <div class="offcanvas-body px-5 pt-5">
-
-            <!-- === GİRİŞ FORMU === -->
-            <div id="loginForm" class="form-fade-in">
-                <p class="text-white-50 mb-5 fs-6">Hesabınıza erişmek için bilgilerinizi girin.</p>
-
-                <form onsubmit="handleLogin(event)">
-                    <!-- Hareketli Email -->
-                    <div class="form-floating-custom">
-                        <!-- ID eklendi: loginEmail -->
-                        <!-- placeholder=" " eklendi (Animasyon için) -->
-                        <input type="email" id="loginEmail" required placeholder=" ">
-                        <label>E-posta Adresi</label>
-                        <span class="bar"></span>
-                    </div>
-
-                    <!-- Hareketli Şifre -->
-                    <div class="form-floating-custom">
-                        <!-- ID eklendi: loginPass -->
-                        <input type="password" id="loginPass" required placeholder=" ">
-                        <label>Şifre</label>
-                        <span class="bar"></span>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center mb-5 mt-4">
-                        <div class="form-check">
-                            <input class="form-check-input bg-transparent border-secondary" type="checkbox" id="rememberMe">
-                            <label class="form-check-label text-white-50 small" for="rememberMe">Beni Hatırla</label>
+            <div class="border-top p-4 bg-light">
+                <h6 class="fw-bold mb-3" style="font-size:0.85rem; text-transform: uppercase; letter-spacing: 1px;">Yorum Yap</h6>
+                <form id="commentForm" onsubmit="submitComment(event)">
+                    <div class="d-flex gap-1 mb-3" id="starRatingSelector">
                         </div>
-                        <a href="#" class="text-white-50 small text-decoration-none">Şifremi Unuttum</a>
-                    </div>
-
-                    <button type="submit" class="btn btn-white-premium w-100">GİRİŞ YAP</button>
-                </form>
-
-                <!-- Sosyal Medya -->
-                <div class="mt-5 text-center">
-                    <span class="text-white-50 small d-block mb-3">VEYA ŞUNUNLA DEVAM ET</span>
-                    <div class="d-flex justify-content-center gap-3">
-                        <button class="social-icon-btn"><i class="bi bi-google"></i></button>
-                        <button class="social-icon-btn"><i class="bi bi-apple"></i></button>
-                        <button class="social-icon-btn"><i class="bi bi-facebook"></i></button>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- === KAYIT FORMU === -->
-            <div id="registerForm" class="form-fade-in" style="display: none;">
-                <p class="text-white-50 mb-5 fs-6">Ayrıcalıklardan yararlanmak için üye olun.</p>
-
-                <form onsubmit="handleRegister(event)">
-                    <!-- Ad Soyad -->
-                    <div class="form-floating-custom">
-                        <!-- ID eklendi: regName -->
-                        <input type="text" id="regName" required placeholder=" ">
-                        <label>Ad Soyad</label>
-                        <span class="bar"></span>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="form-floating-custom">
-                        <!-- ID eklendi: regEmail -->
-                        <input type="email" id="regEmail" required placeholder=" ">
-                        <label>E-posta Adresi</label>
-                        <span class="bar"></span>
-                    </div>
-
-                    <!-- Şifre -->
-                    <div class="form-floating-custom">
-                        <!-- ID eklendi: regPass -->
-                        <input type="password" id="regPass" required placeholder=" ">
-                        <label>Şifre</label>
-                        <span class="bar"></span>
-                    </div>
-
-                    <!-- Şifre Tekrar (Opsiyonel ama görüntüde vardı) -->
-                    <div class="form-floating-custom">
-                        <input type="password" required placeholder=" ">
-                        <label>Şifre Tekrar</label>
-                        <span class="bar"></span>
-                    </div>
-
-                    <div class="form-check mb-5 mt-4">
-                        <input class="form-check-input bg-transparent border-secondary" type="checkbox" required>
-                        <label class="form-check-label text-white-50 small">
-                            <a href="#" class="text-white text-decoration-underline">Gizlilik Politikası</a>'nı okudum ve kabul ediyorum.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn btn-white-premium w-100">HESAP OLUŞTUR</button>
+                    <input type="hidden" id="selectedRating" value="5">
+                    <textarea id="commentText" class="form-control rounded-0 border-dark shadow-none mb-3" rows="3" placeholder="Ürün hakkındaki düşüncelerinizi paylaşın..." required style="font-size:0.9rem;"></textarea>
+                    <button type="submit" id="btnSubmitComment" class="btn btn-black w-100 rounded-0 fw-bold py-2" style="background:#000; color:#fff; letter-spacing: 1px;">GÖNDER</button>
                 </form>
             </div>
-            <!-- === PROFİL EKRANI (Giriş Yapılınca Görünür) === -->
-         <div id="profilePanel" class="form-fade-in" style="display: none;">
-
-             <!-- Kullanıcı Bilgisi -->
-             <div class="text-center mb-5">
-                 <div class="bg-white text-black rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">
-                     <span id="userInitial">U</span>
-                 </div>
-                 <h3 class="fw-bold text-white mb-1" id="userNameDisplay">Kullanıcı Adı</h3>
-                 <p class="text-white-50" id="userEmailDisplay">email@ornek.com</p>
-             </div>
-
-             <!-- Menü Linkleri -->
-             <div class="d-flex flex-column gap-3">
-                 <a href="#" class="btn btn-outline-light text-start py-3 px-4 border-secondary text-white-50 hover-white">
-                     <i class="bi bi-box-seam me-3"></i> Siparişlerim
-                 </a>
-                 <a href="#" class="btn btn-outline-light text-start py-3 px-4 border-secondary text-white-50 hover-white">
-                     <i class="bi bi-heart me-3"></i> Favorilerim
-                 </a>
-                 <a href="#" class="btn btn-outline-light text-start py-3 px-4 border-secondary text-white-50 hover-white">
-                     <i class="bi bi-geo-alt me-3"></i> Adreslerim
-                 </a>
-                 <a href="#" class="btn btn-outline-light text-start py-3 px-4 border-secondary text-white-50 hover-white">
-                     <i class="bi bi-gear me-3"></i> Hesap Ayarları
-                 </a>
-             </div>
-
-             <!-- Çıkış Yap -->
-             <button onclick="handleLogout()" class="btn btn-danger w-100 mt-5 py-3 fw-bold">
-                 ÇIKIŞ YAP
-             </button>
-         </div>
         </div>
     </div>
-    <div class="container-fluid px-0 px-lg-4 mt-4 mb-5">
-        <div class="row g-2">
 
-            <!-- SOL TARAF: 4'lü Resim Grid'i -->
-            <div class="col-lg-8">
-                <div class="row g-1" id="image-container">
-                    <!-- Resimler JS ile buraya gelecek -->
-                    <!-- Örnek Görünüm:
-                    <div class="col-6"><img src="..." class="product-grid-img"></div>
-                    <div class="col-6"><img src="..." class="product-grid-img"></div>
-                    ... -->
-                </div>
-            </div>
-
-            <!-- SAĞ TARAF: Detaylar ve Satın Alma (Sticky) -->
-            <div class="col-lg-4">
-              <!-- SAĞ TARAF: DİNAMİK ÜRÜN BİLGİLERİ -->
-<div class="product-sidebar pe-3">
-
-  <!-- İsim & Fiyat -->
-  <h1 id="p-name" class="fs-4 fw-bold mb-1">Ürün Adı</h1>
-  <p id="p-price" class="fs-5 fw-bold mb-3">0.00 TL</p>
-
-  <!-- RENK SEÇİMİ -->
-  <div class="mb-3">
-      <!-- Renk Yuvarlakları Buraya Gelecek -->
-      <div id="color-container" class="d-flex gap-2 mb-2"></div>
-      <!-- Seçili Renk İsmi ve Referans -->
-      <div class="small text-muted">
-          <span id="color-name" class="text-dark fw-bold">Renk</span> · Ref. <span id="p-ref">0000/000/000</span>
-      </div>
-  </div>
-
-  <hr class="text-muted opacity-25 my-4">
-
-  <!-- BEDEN SEÇİMİ -->
-  <div class="mb-4">
-      <span class="d-block small fw-bold mb-2">Beden seç</span>
-      <!-- Beden Yuvarlakları Buraya Gelecek -->
-      <div id="size-container" class="d-flex flex-wrap gap-2"></div>
-  </div>
-
-  <!-- BOY SEÇİMİ (DİNAMİK - Sadece varsa görünür) -->
-  <div id="length-wrapper" class="mb-4" style="display: none;">
-      <span class="d-block small fw-bold mb-2">Boy seç</span>
-      <!-- Boy Butonları Buraya Gelecek -->
-      <div id="length-container" class="d-flex gap-2"></div>
-  </div>
-
-  <!-- MODEL BİLGİSİ -->
-  <div class="border rounded p-3 d-flex align-items-center mb-4 bg-white">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#007bff" class="bi bi-info-circle me-3 flex-shrink-0" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-      </svg>
-      <span id="model-info" class="small text-dark">Model bilgisi yükleniyor...</span>
-  </div>
-
-  <!-- SEPETE EKLE -->
-  <button class="btn btn-dark w-100 py-3 fw-bold rounded-0" style="background-color: #007f5f; border:none; margin-bottom:50px">SEPETE EKLE</button>
-
-
-                    <!-- AKORDİYON MENÜLER -->
-                    <div class="mt-4">
-                        <div class="info-box-item">
-                            <span class="small fw-bold">Bileşim, bakım ve menşe</span>
-                            <svg width="10" height="10" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>
-                        </div>
-                        <div class="info-box-item">
-                            <span class="small fw-bold">Gönderi ve iadeler</span>
-                            <svg width="10" height="10" viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>
-                        </div>
-                    </div>
-
-                    <!-- TESLİMAT BİLGİSİ -->
-                    <div class="mt-4 border rounded p-3">
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex align-items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16"><path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h-9a.5.5 0 0 1-.5-.5V9a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4.5a.5.5 0 0 1-1 0V9a.5.5 0 0 1 .5-.5z"/></svg>
-                                <span class="small">Mağazadan teslim alma</span>
-                            </div>
-                            <span class="small fw-bold text-success">ÜCRETSİZ</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-4 0 1 1 0 0 1-1-1v-1H2a2 2 0 0 1-2-2V3.5zm12 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
-                                <div class="d-flex flex-column">
-                                    <span class="small">Adrese standart gönderi</span>
-                                    <span class="text-muted" style="font-size: 0.65rem;">1.999,00 TL üzeri siparişlerde</span>
-                                </div>
-                            </div>
-                            <span class="small fw-bold text-success">ÜCRETSİZ</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-</div>
-        <!-- STICKY ADD TO CART BAR -->
-<div id="sticky-cart-bar" class="sticky-product-bar">
-    <div class="container-fluid px-4 d-flex align-items-center justify-content-between h-100">
-
-        <!-- Sol Taraf: Ürün Bilgisi -->
-        <div class="d-flex align-items-center gap-3">
-            <img id="sticky-img" src="" class="sticky-thumb">
-            <div class="d-none d-md-block">
-                <span id="sticky-name" class="fw-bold d-block text-truncate" style="max-width: 200px;">Ürün Adı</span>
-            </div>
-
-            <!-- Fiyat -->
-            <div id="sticky-price-box" class="d-flex align-items-center gap-2 border-start ps-3 ms-2">
-                <!-- JS dolduracak -->
-            </div>
-
-            <!-- Renk -->
-            <div class="d-none d-lg-flex align-items-center gap-2 border-start ps-3 ms-2">
-                <span id="sticky-color-dot" class="color-dot-sm"></span>
-                <span id="sticky-color-name" class="small">Renk</span>
-            </div>
-        </div>
-
-        <!-- Sağ Taraf: Aksiyonlar -->
-        <div class="d-flex gap-2">
-            <button class="btn btn-outline-secondary rounded-0 fw-bold px-4 bg-white text-dark border-secondary">Beden seç</button>
-            <button class="btn btn-green rounded-0 fw-bold px-4">SEPETE EKLE</button>
-        </div>
-    </div>
-</div>
-
-<!-- STICKY BAR (Başlangıçta Gizli) -->
-<div id="sticky-cart-bar" class="sticky-product-bar">
-    <div class="container d-flex align-items-center justify-content-between">
-
-        <!-- SOL: Ürün Bilgisi -->
-        <div class="d-flex align-items-center gap-3">
-            <!-- Küçük Resim -->
-            <img id="sticky-img" src="" class="sticky-thumb">
-
-            <!-- İsim -->
-            <div class="d-none d-md-block">
-                <span id="sticky-name" class="fw-bold text-dark d-block">Ürün Adı</span>
-            </div>
-
-            <!-- Fiyat Alanı -->
-            <div id="sticky-price-box" class="d-flex align-items-center gap-2 border-start ps-3 ms-2">
-                <!-- JS dolduracak -->
-            </div>
-
-            <!-- Renk -->
-            <div class="d-none d-lg-flex align-items-center gap-2 border-start ps-3 ms-2">
-                <span id="sticky-color-dot" class="sticky-color-dot"></span>
-                <span id="sticky-color-name" class="small fw-medium text-dark">Renk</span>
-            </div>
-        </div>
-
-        <!-- SAĞ: Butonlar -->
-        <div class="d-flex gap-2">
-            <button class="btn btn-sticky-outline d-none d-sm-block">Beden seç</button>
-            <button class="btn btn-sticky-green">SEPETE EKLE</button>
-        </div>
-    </div>
-</div>
-
-<!-- İLGİNİZİ ÇEKEBİLİR ALANI (Güncellenmiş Grid Yapısı) -->
-<!-- Bunu 'product-detail' sayfasındaki mevcut footer'ın üstüne koy -->
-<section class="container-fluid mt-5 pt-5 mb-5 border-top">
+  <!-- İLGİNİZİ ÇEKEBİLİR ALANI (Güncellenmiş Grid Yapısı) -->
+  <!-- Bunu 'product-detail' sayfasındaki mevcut footer'ın üstüne koy -->
+  <section class="container-fluid mt-5 pt-5 mb-5 border-top">
     <h3 class="text-center fw-bold tracking-widest mb-5">İlginizi Çekebilir</h3>
 
     <!-- Otomatik Doldurulacak Grid -->
     <div class="row g-3" id="similar-products-grid">
-        <!-- JS ile dolacak -->
+      <!-- JS ile dolacak -->
     </div>
-</section>
+  </section>
 
-    <!-- FOOTER BAŞLANGIÇ -->
-    <footer class="bg-white pt-5 pb-5 mt-5 border-top" style="position: relative; z-index: 20;">
-        <div class="container">
-            <div class="row">
+  <div id="dynamic-footer"></div>
 
-                <!-- 1. Kolon: Hesabım -->
-                <div class="col-12 col-md-4 mb-4">
-                    <!-- fw-bold: Kalın Yazı, text-dark: Siyah Renk -->
-                    <h6 class="fw-bold text-dark mb-4" style="font-size: 0.95rem; letter-spacing: 0.5px;">Hesabım</h6>
-                    <ul class="list-unstyled">
-                        <!-- text-decoration-none: Alt çizgiyi kaldırır -->
-                        <!-- text-secondary: Rengi gri yapar -->
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Kayıt Ol</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Giriş Yap</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Şifremi Unuttum</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Kargo Takip</a></li>
-                    </ul>
-                </div>
-
-                <!-- 2. Kolon: Hakkımızda -->
-                <div class="col-12 col-md-4 mb-4">
-                    <h6 class="fw-bold text-dark mb-4" style="font-size: 0.95rem; letter-spacing: 0.5px;">Hakkımızda</h6>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">İletişim</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Hakkımızda</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Hizmet Kullanım Şartları</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Gizlilik Politikası</a></li>
-                    </ul>
-                </div>
-
-                <!-- 3. Kolon: Yardım -->
-                <div class="col-12 col-md-4 mb-4">
-                    <h6 class="fw-bold text-dark mb-4" style="font-size: 0.95rem; letter-spacing: 0.5px;">Yardım</h6>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Sıkça Sorulan Sorular</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link">Sipariş, Teslimat & İade</a></li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Alt Telif Hakkı -->
-            <div class="row mt-4 pt-4 border-top">
-                 <div class="col-12">
-                     <p class="text-muted small mb-0">&copy; 2026 ALOTHING. Tüm hakları saklıdır.</p>
-                 </div>
-            </div>
-        </div>
-<!-- FOOTER BİTİŞ -->
-</body>
-</html>
-
-<script src="js/product-detail.js" charset="utf-8"></script>
-<script src="js/script.js"></script>
-<script src="js/login.js" charset="utf-8"></script>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('dynamic-footer').innerHTML = html;
+        });
+</script>
+    <!-- FOOTER BİTİŞ -->
+  </body>
+  </html>
+<script src="js/bootstrap.bundle.min.js" charset="utf-8"></script>
+  <script src="js/product-detail.js" charset="utf-8"></script>
+  <script src="js/script.js"></script>
+  <script src="js/login.js" charset="utf-8"></script>
+  <script src="js/navbar.js" charset="utf-8"></script>
+  <script src="js/cart.js"></script>

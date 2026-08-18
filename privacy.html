@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizlilik Politikası - ALOTHING</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================== */
+        /* TEMEL AYARLAR VE LÜKS TİPOGRAFİ */
+        /* ========================================== */
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
+
+        .lux-tracking { letter-spacing: 5px; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; color: #888; display: block; margin-bottom: 20px;}
+        .display-title { font-weight: 200; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -2px; line-height: 1.1; margin-bottom: 30px; }
+
+        /* ========================================== */
+        /* ANİMASYON SINIFLARI */
+        /* ========================================== */
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .is-revealed { opacity: 1; transform: translate(0) scale(1); }
+        .delay-100 { transition-delay: 100ms; } .delay-200 { transition-delay: 200ms; }
+
+        /* ========================================== */
+        /* SAYFA TASARIMI */
+        /* ========================================== */
+        .legal-hero { padding: 180px 0 80px; text-align: center; border-bottom: 1px solid #f0f0f0; background: #fafafa; }
+        .legal-container { padding: 80px 0 150px; }
+
+        /* Sol Menü (Sticky) */
+        .sticky-nav { position: sticky; top: 120px; }
+        .legal-menu { list-style: none; padding: 0; margin: 0; border-left: 1px solid #eee; }
+        .legal-menu li { margin-bottom: 15px; }
+        .legal-menu a { display: block; padding-left: 20px; color: #888; text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: 0.3s; border-left: 2px solid transparent; margin-left: -1px; }
+        .legal-menu a:hover, .legal-menu a.active { color: #000; border-left-color: #000; font-weight: 500; }
+
+        /* Sağ İçerik (Okuma Alanı) */
+        .legal-content h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 1px; margin-top: 60px; margin-bottom: 25px; text-transform: uppercase; color: #111; }
+        .legal-content h3:first-child { margin-top: 0; }
+        .legal-content p { font-size: 1.05rem; line-height: 2; color: #555; font-weight: 300; margin-bottom: 25px; }
+        .legal-content ul { padding-left: 20px; margin-bottom: 25px; }
+        .legal-content li { font-size: 1.05rem; line-height: 2; color: #555; font-weight: 300; margin-bottom: 10px; }
+
+        @media (max-width: 991px) {
+            .sticky-nav { position: static; margin-bottom: 50px; }
+            .legal-menu { border-left: none; border-top: 1px solid #eee; padding-top: 20px; display: flex; flex-wrap: wrap; gap: 15px; }
+            .legal-menu li { margin-bottom: 0; }
+            .legal-menu a { padding-left: 0; border-left: none; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+            .legal-menu a:hover, .legal-menu a.active { border-bottom-color: #000; border-left-color: transparent; }
+            .legal-hero { padding: 120px 0 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <section class="legal-hero">
+        <div class="container reveal-up is-revealed">
+            <span class="lux-tracking">Güvenlik ve Şeffaflık</span>
+            <h1 class="display-title">GİZLİLİK POLİTİKASI</h1>
+            <p class="text-muted" style="font-weight: 300; font-size: 1.1rem;">Son Güncelleme: 1 Ocak 2026</p>
+        </div>
+    </section>
+
+    <section class="legal-container container">
+        <div class="row">
+
+            <div class="col-lg-3 mb-5 mb-lg-0">
+                <div class="sticky-nav reveal-up delay-100">
+                    <ul class="legal-menu" id="legalMenu">
+                        <li><a href="#giris" class="active">Giriş</a></li>
+                        <li><a href="#toplanan-veriler">Toplanan Veriler</a></li>
+                        <li><a href="#verilerin-kullanimi">Verilerin Kullanımı</a></li>
+                        <li><a href="#bilgi-paylasimi">Bilgi Paylaşımı</a></li>
+                        <li><a href="#cerezler">Çerezler (Cookies)</a></li>
+                        <li><a href="#veri-guvenligi">Veri Güvenliği</a></li>
+                        <li><a href="#kullanici-haklari">Haklarınız (KVKK)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-8 offset-lg-1 legal-content">
+
+                <div id="giris" class="reveal-up delay-200">
+                    <h3>1. Giriş</h3>
+                    <p>ALOTHING Tekstil A.Ş. ("ALOTHING", "biz" veya "bizim") olarak, gizliliğinize ve kişisel verilerinizin korunmasına en üst düzeyde önem veriyoruz. Zarafet ve kalitenin dijital dünyadaki karşılığı olan markamız, verilerinizi işlerken de aynı şeffaflığı ve güveni temel alır.</p>
+                    <p>Bu Gizlilik Politikası, alothing.com ("Site") adresini ziyaret ettiğinizde veya sitemiz üzerinden bir alışveriş yaptığınızda kişisel bilgilerinizin nasıl toplandığını, kullanıldığını ve paylaşıldığını açıklamaktadır.</p>
+                </div>
+
+                <div id="toplanan-veriler" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>2. Toplanan Veriler</h3>
+                    <p>Sitemizi ziyaret ettiğinizde, cihazınızla ilgili bazı bilgileri otomatik olarak toplarız. Bu veriler şunları içerir:</p>
+                    <ul>
+                        <li><strong>Cihaz Bilgileri:</strong> Web tarayıcınız, IP adresiniz, saat diliminiz ve cihazınıza yüklenmiş olan bazı çerezler hakkında bilgiler.</li>
+                        <li><strong>Sipariş Bilgileri:</strong> Sitemiz üzerinden bir satın alma işlemi gerçekleştirdiğinizde; adınız, fatura adresiniz, teslimat adresiniz, ödeme bilgileriniz (kredi kartı numaraları dahil - ödeme altyapısı iyzico aracılığıyla güvenle işlenir), e-posta adresiniz ve telefon numaranız.</li>
+                        <li><strong>Hesap Bilgileri:</strong> Sitemize kayıt olurken oluşturduğunuz şifre (kriptolanmış olarak tutulur) ve favori ürünleriniz gibi kişisel tercihleriniz.</li>
+                    </ul>
+                </div>
+
+                <div id="verilerin-kullanimi" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>3. Verilerin Kullanımı</h3>
+                    <p>Topladığımız Sipariş Bilgilerini, Site üzerinden verilen tüm siparişleri yerine getirmek için kullanırız. Bunun içerisine şunlar dâhildir:</p>
+                    <ul>
+                        <li>Ödeme bilgilerinizin işlenmesi ve güvenliğinin sağlanması.</li>
+                        <li>Siparişlerinizin kargolanması ve tarafınıza fatura ile sipariş onaylarının iletilmesi.</li>
+                        <li>Size özel, stilinize uygun yeni koleksiyonlar ve özel davetler hakkında iletişim kurmak (Bülten aboneliği onayı verdiğiniz takdirde).</li>
+                        <li>Olası risk ve dolandırıcılıklara karşı siparişlerimizin taranması.</li>
+                    </ul>
+                </div>
+
+                <div id="bilgi-paylasimi" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>4. Bilgi Paylaşımı</h3>
+                    <p>Kişisel verileriniz, asla ticari amaçlarla satılmaz. Ancak size en iyi hizmeti sunabilmek adına, bilgilerinizi yalnızca gerekli olduğu durumlarda güvenilir üçüncü partilerle paylaşırız:</p>
+                    <p>Örneğin; çevrimiçi mağazamıza güç sağlamak için özel sunucu altyapıları kullanıyoruz. Güvenli ödeme işlemleri için <strong>iyzico</strong> gibi BDDK onaylı ödeme kuruluşlarıyla entegre çalışıyoruz. Ayrıca, ürünlerinizin size güvenle ulaşabilmesi için teslimat bilgilerinizi anlaşmalı kargo firmalarımızla (Yurtiçi Kargo vb.) paylaşıyoruz.</p>
+                </div>
+
+                <div id="cerezler" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>5. Çerezler (Cookies)</h3>
+                    <p>Size daha kişiselleştirilmiş ve pürüzsüz bir alışveriş deneyimi sunabilmek için çerezleri (cihazınıza yerleştirilen veri dosyaları) kullanıyoruz. Çerezler, Site'de hangi sayfaları ziyaret ettiğinizi anlamamıza, sepetinizdeki ürünleri hatırlamamıza ve Site performansını iyileştirmemize yardımcı olur. Tarayıcı ayarlarınızdan çerezleri dilediğiniz zaman devre dışı bırakabilirsiniz.</p>
+                </div>
+
+                <div id="veri-guvenligi" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>6. Veri Güvenliği</h3>
+                    <p>Kişisel bilgilerinizin kaybolmasını, kötüye kullanılmasını, yetkisiz erişimini veya ifşa edilmesini önlemek için endüstri standartlarında güvenlik önlemleri alıyoruz. Kredi kartı bilgilerinizi bize sağlarsanız, bu bilgiler SSL (Güvenli Soket Katmanı) teknolojisi kullanılarak şifrelenir ve standartlara uygun olarak saklanır.</p>
+                </div>
+
+                <div id="kullanici-haklari" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>7. Haklarınız (KVKK)</h3>
+                    <p>Türkiye Cumhuriyeti Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında, kişisel verilerinizle ilgili aşağıdaki haklara sahipsiniz:</p>
+                    <ul>
+                        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme,</li>
+                        <li>İşlenen verilerinize erişim ve bilgi talep etme,</li>
+                        <li>Eksik veya yanlış işlenen verilerin düzeltilmesini isteme,</li>
+                        <li>Kişisel verilerinizin silinmesini veya yok edilmesini talep etme.</li>
+                    </ul>
+
+                    <p class="mt-5 mb-0 fw-bold text-dark">Bizimle İletişime Geçin</p>
+                    <p>Gizlilik uygulamalarımız hakkında daha fazla bilgi almak, sorular sormak veya haklarınızı kullanmak için lütfen <a href="mailto:alothinginfo@gmail.com" style="color:#000;">alothinginfo@gmail.com</a> adresinden veya <strong>İletişim</strong> sayfamızdaki formu kullanarak bize ulaşın.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="dynamic-footer"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/login.js" charset="utf-8"></script>
+    <script src="js/navbar.js" charset="utf-8"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Navbar ve Footer Yükleme
+            fetch('navbar.html').then(r => r.text()).then(html => { document.getElementById('navbar-placeholder').innerHTML = html; });
+            fetch('footer.html').then(r => r.text()).then(html => { document.getElementById('dynamic-footer').innerHTML = html; });
+
+            // SCROLL ANİMASYONLARI MOTORU
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+            // SOL MENÜ AKTİF LİNK TAKİBİ (Scrollspy Mantığı)
+            const sections = document.querySelectorAll('.legal-content > div[id]');
+            const navLinks = document.querySelectorAll('.legal-menu a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth Scroll
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/login.js" charset="utf-8"></script>
+    <script src="js/navbar.js" charset="utf-8"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

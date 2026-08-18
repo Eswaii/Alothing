@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme - ALOTHING</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f8f8; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+        /* MODAL BOYUTU BÜYÜTÜLDÜ */
+        .modal {
+            width: 98%; max-width: 1200px; height: 800px;
+            background-color: white; border-radius: 0px; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex; position: relative;
+        }
+
+        /* SOL TARAF: ÜRÜN SLIDER & ÖZET (SİYAH BEYAZ TEMA) */
+        .modal-product {
+            width: 40%; height: 100%; background-color: #fafafa;
+            position: relative; border-right: 1px solid #eee;
+        }
+
+        .slider-container { width: 100%; height: 65%; position: relative; overflow: hidden; margin-top: 30px; }
+        .slide {
+            position: absolute; width: 100%; height: 100%; opacity: 0;
+            transition: opacity 0.8s ease-in-out; display: flex; flex-direction: column; align-items: center;
+        }
+        .slide.active { opacity: 1; }
+        .slide img { width: 70%; height: 300px; object-fit: contain; margin-bottom: 20px; }
+
+        .product-info { text-align: center; padding: 0 30px; }
+        .product-info h3 { font-size: 1.2rem; color: #000; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
+        .product-info p { font-size: 0.95rem; color: #666; }
+
+        .order-summary-box {
+            position: absolute; bottom: 0; width: 100%; background: #fff;
+            padding: 30px; border-top: 3px solid #000;
+        }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; color: #444; }
+        .summary-total { font-weight: 600; color: #000; font-size: 1.3rem; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; }
+
+        /* SAĞ TARAF: FORMLAR */
+        .modal-info { width: 60%; height: 100%; position: relative; overflow: hidden; padding: 50px; }
+
+        .step-container {
+            width: 100%; position: absolute; left: 50px; right: 50px; width: calc(100% - 100px);
+            height: calc(100% - 100px); overflow-y: auto;
+            transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.5s;
+            scrollbar-width: none;
+        }
+        .step-container::-webkit-scrollbar { display: none; }
+
+        #address-step { top: 50px; opacity: 1; }
+        #payment-step { top: 100%; opacity: 0; }
+
+        .move-up { transform: translateY(-120%); opacity: 0 !important; }
+        .come-from-bottom { transform: translateY(-100%); opacity: 1 !important; }
+
+        h2 { font-size: 1.8rem; margin-bottom: 35px; color: #000; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; }
+
+        /* INPUT STİLLERİ (SİYAH BEYAZ) */
+        .form-floating-custom-border { position: relative; margin-bottom: 18px; }
+        .form-floating-custom-border input, .form-floating-custom-border select {
+            height: 55px; border: 1px solid #e0e0e0; border-radius: 0px; padding: 10px 15px; width: 100%; font-size: 1rem; color: #000; transition: 0.3s;
+        }
+        .form-floating-custom-border input:focus, .form-floating-custom-border select:focus { border-color: #000; outline: none; }
+        .form-floating-custom-border label {
+            position: absolute; top: -10px; left: 12px; background-color: #fff; padding: 0 8px; font-size: 0.75rem; font-weight: 700; color: #000; pointer-events: none; text-transform: uppercase;
+        }
+
+        .flex-row { display: flex; gap: 20px; }
+        .flex-row div { flex: 1; }
+
+        /* CHECKBOX STİLİ */
+        .save-address-option { display: flex; align-items: center; margin-bottom: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
+        .save-address-option input { width: 18px; height: 18px; margin-right: 10px; accent-color: #000; cursor: pointer; }
+
+        /* BUTONLAR (SİYAH BEYAZ) */
+        button {
+            width: 100%; padding: 18px; background-color: #000; color: white;
+            border: none; border-radius: 0px; cursor: pointer; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px; margin-top: 15px;
+            transition: 0.3s;
+        }
+        button:hover { background-color: #333; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        .back-btn {
+            background: none; box-shadow: none; color: #666; font-size: 0.85rem;
+            margin-top: 15px; text-decoration: underline; padding: 0; text-align: left; width: auto; text-transform: none; font-weight: 400; letter-spacing: 0;
+        }
+        .back-btn:hover { background: none; transform: none; color: #000; box-shadow: none; }
+
+        /* ADRES KARTLARI (SİYAH BEYAZ) */
+        .address-card {
+            background: #fff; border: 1px solid #eee; border-radius: 0px; padding: 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 15px; transition: 0.3s; cursor: pointer;
+        }
+        .address-card:hover, .address-card.selected { border-color: #000; background-color: #fafafa; }
+        .address-card input[type="radio"] { width: auto; margin-right: 20px; accent-color: #000; transform: scale(1.3); }
+        .address-card-details { flex-grow: 1; }
+        .address-card-title { font-weight: 700; color: #000; display: block; font-size: 1.05rem; text-transform: uppercase; }
+        .address-card-desc { color: #555; font-size: 0.9rem; line-height: 1.5; margin-top: 5px;}
+
+        /* KARGO İLERLEME ÇUBUĞU (MİNİMAL TASARIM) */
+        .shipping-progress-container { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .shipping-text { font-size: 0.75rem; color: #666; margin-bottom: 4px; text-align: center; }
+        .shipping-text strong { color: #000; font-weight: 600; }
+        .progress-bg { width: 100%; height: 4px; background-color: #e5e5e5; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background-color: #000; transition: width 0.5s ease-out; width: 0%; }
+        .progress-fill.success { background-color: #15803d; } /* 2599'u geçince yeşil olur */
+
+        /* KUPON ALANI (GİZLİ / AÇILIR KAPANIR) */
+        .coupon-wrapper { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .coupon-header { font-size: 0.8rem; font-weight: 600; color: #000; cursor: pointer; display: flex; justify-content: space-between; align-items: center; letter-spacing: 0.5px;}
+        .coupon-header:hover { color: #555; }
+        .coupon-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; margin-top: 0; }
+        .coupon-content.open { max-height: 120px; margin-top: 15px; }
+        .coupon-input-group { display: flex; gap: 10px; }
+        .coupon-input-group input { flex: 1; padding: 12px 15px; border: 1px solid #ddd; font-size: 0.85rem; text-transform: uppercase; outline: none; transition: 0.3s; border-radius: 0; }
+        .coupon-input-group input:focus { border-color: #000; }
+        .coupon-input-group button { width: auto; margin-top: 0; padding: 0 25px; font-size: 0.8rem; letter-spacing: 1px; }
+        .coupon-msg { font-size: 0.75rem; font-weight: 600; margin-top: 10px; text-align: left;}
+        .text-success { color: #15803d; }
+        .text-danger { color: #b91c1c; }
+    </style>
+</head>
+<body>
+
+<div class="modal">
+    <div class="modal-product">
+        <div id="slider" class="slider-container"></div>
+        <div class="order-summary-box">
+          <div class="shipping-progress-container">
+                <div id="shippingProgressText" class="shipping-text">
+                    Kargo bedava için <strong>2.599 TL</strong> daha ekleyin.
+                </div>
+                <div class="progress-bg">
+                    <div id="shippingProgressBar" class="progress-fill"></div>
+                </div>
+            </div>
+            <div class="summary-row"><span>Ara Toplam</span><span id="subtotal">0.00 TL</span></div>
+            <div class="summary-row"><span>Kargo</span><span id="shipping">99.00 TL</span></div>
+            <div class="summary-row summary-total"><span>TOPLAM</span><span id="grandtotal">0.00 TL</span></div>
+            <div class="coupon-wrapper">
+                    <div class="coupon-header" onclick="toggleCoupon()">
+                        <span>+ İNDİRİM KODU EKLE</span>
+                        <i class="fas fa-chevron-down" id="couponIcon" style="transition: transform 0.3s;"></i>
+                    </div>
+
+                    <div class="coupon-content" id="couponCollapse">
+                        <div class="coupon-input-group">
+                            <input type="text" id="couponInput" placeholder="KUPON KODU">
+                            <button type="button" id="applyCouponBtn" onclick="applyCoupon()">UYGULA</button>
+                        </div>
+                        <div id="couponMessage" class="coupon-msg"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="modal-info">
+
+        <div id="address-step" class="step-container">
+
+            <div id="address-list-view" style="display: none;">
+                <h2>Teslimat Adresi Seçin</h2>
+                <div id="addresses-container"></div>
+                <button type="button" class="back-btn" onclick="showAddressForm()" style="font-weight: 600; color: #000; text-decoration: none;"><i class="fas fa-plus"></i> Yeni Adres Ekle</button>
+                <button onclick="validateAndGoToPayment()" style="margin-top: 40px;">Ödemeye Geç <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div id="address-form-view" style="display: none;">
+                <button type="button" class="back-btn" id="backToAddressesBtn" onclick="hideAddressForm()" style="margin-bottom: 20px; display: none;"><i class="fas fa-chevron-left"></i> Adreslere Dön</button>
+                <h2 id="addrFormTitle">Adres Bilgileri</h2>
+
+                <form id="addressForm" onsubmit="saveAddress(event)">
+    <label class="save-address-option">
+        <input type="checkbox" id="saveAddressCheckbox" onchange="toggleAddressTitle()">
+        Adresi profilime kaydet
+    </label>
+
+    <div class="form-floating-custom-border" id="titleField" style="display: none;">
+        <input type="text" id="addrTitle" placeholder=" ">
+        <label>Adres Başlığı (Örn: Evim, İş Yerim)</label>
+    </div>
+
+    <div class="flex-row">
+        <div class="form-floating-custom-border">
+            <input type="text" id="addrName" placeholder=" " required>
+            <label>Ad</label>
+        </div>
+        <div class="form-floating-custom-border">
+            <input type="text" id="addrSurname" placeholder=" " required>
+            <label>Soyad</label>
+        </div>
+    </div>
+
+    <div class="flex-row">
+        <div class="form-floating-custom-border">
+            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 1rem; font-weight: 600; color: #000; z-index: 5; pointer-events: none;">+90</span>
+            <input type="text" id="addrPhone" placeholder=" " required style="padding-left: 55px;">
+            <label style="left: 45px;">Telefon</label>
+        </div>
+        <div class="form-floating-custom-border">
+            <input type="text" id="addrZip" placeholder=" " required>
+            <label>Posta kodu</label>
+        </div>
+    </div>
+
+    <div class="form-floating-custom-border">
+        <input type="text" id="addrLine" placeholder=" " required>
+        <label>Sokak, Mahalle ve Kapı No</label>
+    </div>
+
+    <div class="flex-row">
+        <div class="form-floating-custom-border">
+            <select id="addrCity" required onchange="updateDistricts()">
+                </select>
+            <label>Şehir</label>
+        </div>
+        <div class="form-floating-custom-border">
+            <select id="addrDistrict" required>
+                <option value="" disabled selected>Önce Şehir Seçin</option>
+            </select>
+            <label>İlçe</label>
+        </div>
+    </div>
+
+    <input type="hidden" id="editAddressId">
+    <button type="submit" style="margin-top: 10px;">Devam Et</button>
+</form>
+            </div>
+        </div>
+
+        <div id="payment-step" class="step-container">
+            <h2>Ödeme Bilgileri</h2>
+
+            <div class="form-floating-custom-border" style="margin-top:30px; margin-bottom: 30px;">
+                <input type="text" id="cc-name" placeholder=" " required>
+                <label>Kart Üzerindeki İsim</label>
+                <small class="text-danger error-msg" id="err-cc-name" style="display:none; position:absolute; bottom:-20px; left:0; font-size:0.75rem; font-weight:600;"></small>
+            </div>
+
+            <div class="form-floating-custom-border" style="margin-bottom: 30px;">
+                <input type="text" id="cc-number" placeholder=" " maxlength="19" required>
+                <label>Kart Numarası</label>
+                <small class="text-danger error-msg" id="err-cc-number" style="display:none; position:absolute; bottom:-20px; left:0; font-size:0.75rem; font-weight:600;"></small>
+            </div>
+
+            <div class="flex-row" style="margin-bottom: 30px;">
+                <div class="form-floating-custom-border" style="flex: 1; margin-bottom:0;">
+                    <input type="text" id="cc-expiry" placeholder=" " maxlength="5" required>
+                    <label>S.K.T (AA/YY)</label>
+                    <small class="text-danger error-msg" id="err-cc-expiry" style="display:none; position:absolute; bottom:-20px; left:0; font-size:0.75rem; font-weight:600;"></small>
+                </div>
+
+                <div class="form-floating-custom-border" style="flex: 1; margin-bottom:0;">
+                    <input type="text" id="cc-cvc" placeholder=" " maxlength="3" required>
+                    <label>CVC</label>
+                    <small class="text-danger error-msg" id="err-cc-cvc" style="display:none; position:absolute; bottom:-20px; left:0; font-size:0.75rem; font-weight:600;"></small>
+                </div>
+            </div>
+
+            <button onclick="finalizeOrder()" style="margin-top: 10px;">Siparişi Onayla</button>
+            <button type="button" onclick="goBackToAddress()" class="back-btn" style="text-align: center; width: 100%; display:block; text-decoration: none;">← Adres Bilgilerine Dön</button>
+        </div>
+
+    </div>
+</div>
+<div id="successPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+    <div style="background: #fff; padding: 50px 40px; text-align: center; max-width: 450px; width: 90%; box-shadow: 0 25px 50px rgba(0,0,0,0.2); transform: translateY(20px); animation: popupAnim 0.4s forwards ease-out;">
+        <i class="fas fa-check-circle" style="font-size: 60px; color: #000; margin-bottom: 20px;"></i>
+        <h2 style="font-size: 1.8rem; margin-bottom: 10px; color: #000; letter-spacing: 1px;">SİPARİŞ ALINDI</h2>
+        <p id="popupMessage" style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px;"></p>
+        <button onclick="window.location.href='index.html'" style="margin-top: 0;">ALIŞVERİŞE DÖN</button>
+    </div>
+</div>
+
+<style>
+    @keyframes popupAnim {
+        to { transform: translateY(0); opacity: 1; }
+        from { transform: translateY(20px); opacity: 0; }
+    }
+</style>
+<script src="js/checkout.js" charset="utf-8"></script>
+</body>
+</html>

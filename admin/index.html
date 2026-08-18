@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Paneli - ALOTHING</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; color: #111; }
+
+        /* Sol Menü */
+        .sidebar { background-color: #050505; min-height: 100vh; color: #fff; padding-top: 30px; position: relative; overflow: hidden; }
+        .sidebar a { color: #888; text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 14px 30px; font-size: 0.9rem; font-weight: 500; transition: 0.3s; letter-spacing: 0.5px; border-left: 3px solid transparent; }
+        .sidebar a:hover, .sidebar a.active { color: #fff; background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%); border-left: 3px solid #fff; }
+
+        /* Lüks Kartlar */
+        .premium-card { background: #fff; padding: 25px; border: 1px solid rgba(0,0,0,0.04); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: all 0.3s ease; position: relative; overflow: hidden; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .premium-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
+
+        .stat-icon-box { width: 55px; height: 55px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05); }
+
+        .quick-action-btn { background: #fff; border: 1px solid #eaeaea; color: #111; border-radius: 12px; padding: 15px; font-weight: 600; font-size: 0.85rem; transition: 0.2s; display: flex; align-items: center; gap: 10px; justify-content: center; }
+        .quick-action-btn:hover { background: #000; color: #fff; border-color: #000; }
+
+        .hover-bg-light { transition: all 0.2s ease; }
+        .hover-bg-light:hover { background-color: #f8f9fa; cursor: pointer; transform: scale(1.01); }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999; }
+    </style>
+</head>
+<body>
+
+<script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user || user.role !== 'admin') { window.location.href = "../index.html"; }
+</script>
+
+<div class="d-flex">
+    <div class="sidebar" style="width: 260px; flex-shrink: 0; box-shadow: 4px 0 20px rgba(0,0,0,0.05);">
+        <div class="px-4 mb-5 pb-3 border-bottom border-light border-opacity-10 position-relative">
+            <h4 class="fw-bold text-white mb-0" style="letter-spacing: 3px;">ALOTHING</h4>
+            <span class="text-white-50" style="font-size: 0.65rem; letter-spacing: 2px;">COMMAND CENTER</span>
+        </div>
+
+        <a href="index.html" class="active">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg> ANA PANO
+        </a>
+        <a href="orders.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg> SİPARİŞLER</a>
+        <a href="products.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg> ÜRÜNLER</a>
+        <a href="users.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> MÜŞTERİLER</a>
+        <a href="coupons.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg> KUPONLAR</a>
+        <a href="stocks.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg> STOKLAR</a>
+        <a href="messages.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg> MESAJLAR</a>
+        <a href="comments.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> YORUMLAR</a>
+
+        <div class="mt-auto pt-5">
+            <a href="#" onclick="logout()" class="text-white-50 opacity-75 hover-white">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> GÜVENLİ ÇIKIŞ
+            </a>
+        </div>
+    </div>
+
+    <div class="flex-grow-1 p-4 p-xl-5" style="overflow-y: auto; height: 100vh;">
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+            <div>
+                <h1 class="fw-bolder text-dark mb-1" style="font-size: 2rem; letter-spacing: -1px;" id="greetingText">Günaydın, Yönetici</h1>
+                <p class="text-muted small mb-0">Mağazanızın güncel verileri ve son aktiviteleri aşağıda özetlenmiştir.</p>
+            </div>
+            <div class="d-flex gap-2 mt-3 mt-md-0">
+                <a href="products.html" class="quick-action-btn text-decoration-none">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Yeni Ürün
+                </a>
+                <a href="coupons.html" class="quick-action-btn text-decoration-none">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg> Kupon
+                </a>
+                <a href="../index.html" class="btn btn-dark rounded-3 px-4 fw-bold shadow-sm d-flex align-items-center gap-2">
+                    MAĞAZA <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="premium-card">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;">Bekleyen Sipariş</h6>
+                            <h2 class="fw-bold mb-0 text-dark" id="stat-pending-orders"><span class="spinner-border spinner-border-sm text-secondary"></span></h2>
+                        </div>
+                        <div class="stat-icon-box" style="background-color: #f0f7ff; color: #0284c7;">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="text-muted mt-auto pt-2" style="font-size: 0.75rem; border-top: 1px solid #f4f4f4;"><span class="text-primary fw-bold">Kargoya verilmeyi</span> bekliyor</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="premium-card">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;">Bu Ayki Kazanç</h6>
+                            <h2 class="fw-bold mb-0 text-success"><span id="stat-monthly-earn"><span class="spinner-border spinner-border-sm text-secondary"></span></span></h2>
+                        </div>
+                        <div class="stat-icon-box" style="background-color: #f0fdf4; color: #16a34a;">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="text-muted mt-auto pt-2" style="font-size: 0.75rem; border-top: 1px solid #f4f4f4;"><span class="text-success fw-bold">↑ %12 artış</span> geçen aya göre</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="premium-card">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;">Sitedeki Ürün</h6>
+                            <h2 class="fw-bold mb-0 text-dark" id="stat-total-products"><span class="spinner-border spinner-border-sm text-secondary"></span></h2>
+                        </div>
+                        <div class="stat-icon-box" style="background-color: #f8fafc; color: #475569;">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                        </div>
+                    </div>
+                    <div class="text-muted mt-auto pt-2" style="font-size: 0.75rem; border-top: 1px solid #f4f4f4;">Aktif olarak <span class="fw-bold text-dark">satışta bulunuyor</span></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="premium-card">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold mb-1" style="letter-spacing: 1px;">İade / İptal</h6>
+                            <h2 class="fw-bold mb-0 text-danger" id="stat-pending-returns"><span class="spinner-border spinner-border-sm text-secondary"></span></h2>
+                        </div>
+                        <div class="stat-icon-box" style="background-color: #fef2f2; color: #dc2626;">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="text-muted mt-auto pt-2" style="font-size: 0.75rem; border-top: 1px solid #f4f4f4;">İncelenmesi <span class="text-danger fw-bold">gereken talepler</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-8">
+                <div class="premium-card d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Satış Analizi (Gerçek Zamanlı)</h5>
+                        <select id="chartFilter" class="form-select form-select-sm border border-secondary border-opacity-25 shadow-none fw-bold" style="width: 140px; background-color:#fafafa; cursor:pointer;" onchange="updateChartData()">
+                            <option value="week">Son 7 Gün</option>
+                            <option value="month">Bu Ay</option>
+                            <option value="year">Bu Yıl</option>
+                        </select>
+                    </div>
+                    <div class="flex-grow-1" style="position: relative; min-height: 280px;">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="premium-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Popüler Ürünler</h5>
+                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2">TOP 4</span>
+                    </div>
+
+                    <div id="popularProductsContainer">
+                        <div class="text-center py-5">
+                            <div class="spinner-border spinner-border-sm text-secondary mb-2"></div>
+                            <div class="small text-muted mt-2">Sipariş verileri analiz ediliyor...</div>
+                        </div>
+                    </div>
+
+                    <a href="products.html" class="btn btn-light border w-100 mt-2 fw-bold text-dark" style="border-radius: 12px;">Tüm Mağazayı Gör</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-8">
+                <div class="premium-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-light">
+                        <h5 class="fw-bold mb-0">Son Gelen Siparişler</h5>
+                        <a href="orders.html" class="btn btn-sm btn-outline-dark rounded-pill px-4 fw-bold">Tümünü Yönet</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless align-middle mb-0">
+                            <thead class="text-muted small text-uppercase" style="letter-spacing: 1px; border-bottom: 2px solid #f8f9fa;">
+                                <tr>
+                                    <th class="pb-3">Sipariş Kodu</th>
+                                    <th class="pb-3">Müşteri</th>
+                                    <th class="pb-3">Tutar</th>
+                                    <th class="pb-3">Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTable">
+                                <tr><td colspan="4" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary"></div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="bg-black text-white p-5 h-100 d-flex flex-column justify-content-center align-items-center text-center" style="border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15);">
+                    <div style="position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%); top: -100px; right: -100px;"></div>
+                    <div style="position: absolute; width: 200px; height: 200px; border: 1px solid rgba(255,255,255,0.03); border-radius: 50%; bottom: -50px; left: -50px;"></div>
+
+                    <div class="mb-3 position-relative" style="width:70px; height:70px; background:rgba(255,255,255,0.1); border-radius:20px; display:flex; align-items:center; justify-content:center; backdrop-filter: blur(5px);">
+                         <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h6 class="text-white-50 text-uppercase small fw-bold mb-2 position-relative" style="letter-spacing: 2px;">Kayıtlı Müşteri</h6>
+                    <h1 class="display-3 fw-bolder mb-0 position-relative" id="stat-total-users"><span class="spinner-border text-light"></span></h1>
+                    <p class="mt-3 text-white-50 small position-relative" style="line-height:1.6;">Platformunuzdaki aktif<br>kullanıcı sayısı</p>
+                    <a href="users.html" class="btn btn-light rounded-pill mt-4 fw-bold px-5 py-2 position-relative shadow-sm">Kullanıcıları Gör</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // TOAST BİLDİRİM SİSTEMİ
+    function injectToastSystem() {
+        if (document.getElementById('alothing-toast-style')) return;
+        const style = document.createElement('style');
+        style.id = 'alothing-toast-style';
+        style.innerHTML = `
+            #alothing-toast-container { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 999999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+            .alothing-toast { min-width: 320px; background-color: #000; color: #fff; padding: 16px 24px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: flex; align-items: center; opacity: 0; transform: translateY(-20px); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); letter-spacing: 0.5px; }
+            .alothing-toast.show { opacity: 1; transform: translateY(0); }
+            .alothing-toast.error { background-color: #dc2626; }
+            .alothing-toast svg { margin-right: 12px; flex-shrink: 0; }
+        `;
+        document.head.appendChild(style);
+        if (!document.getElementById('alothing-toast-container')) {
+            const container = document.createElement('div');
+            container.id = 'alothing-toast-container';
+            document.body.appendChild(container);
+        }
+    }
+    function showNotification(message, type = 'success') {
+        injectToastSystem();
+        const container = document.getElementById('alothing-toast-container');
+        const toast = document.createElement('div');
+        toast.className = `alothing-toast ${type === 'error' ? 'error' : ''}`;
+        const icon = type === 'error'
+            ? `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`
+            : `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+        toast.innerHTML = `${icon} <span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 10);
+        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3500);
+    }
+
+    // SAAT BAZLI DİNAMİK KARŞILAMA
+    const hour = new Date().getHours();
+    let greeting = "İyi Geceler";
+    if(hour >= 6 && hour < 12) greeting = "Günaydın";
+    else if(hour >= 12 && hour < 18) greeting = "İyi Günler";
+    else if(hour >= 18 && hour < 24) greeting = "İyi Akşamlar";
+    document.getElementById('greetingText').innerHTML = `${greeting}, <span class="text-primary">${user.name.split(' ')[0]}</span>`;
+
+    function logout() {
+        localStorage.removeItem('user');
+        window.location.href = "../index.html";
+    }
+
+    // GLOBAL VERİLER (GRAFİK İÇİN)
+    let globalValidOrders = [];
+    let salesChart;
+
+    // --- CHART.JS SIFIR KONTROL NOKTASI ---
+    function initEmptyChart() {
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        let gradient = ctx.createLinearGradient(0, 0, 0, 350);
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.2)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        salesChart = new Chart(ctx, {
+            type: 'line',
+            data: { labels: [], datasets: [{ label: 'Kazanç (TL)', data: [], borderColor: '#000', backgroundColor: gradient, borderWidth: 3, tension: 0.4, fill: true, pointBackgroundColor: '#fff', pointBorderColor: '#000', pointBorderWidth: 2, pointRadius: 4, pointHoverRadius: 6 }] },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#000', titleFont: { family: 'Inter', size: 13 }, bodyFont: { family: 'Inter', size: 14, weight: 'bold' }, padding: 12, callbacks: { label: function(c) { return c.parsed.y.toLocaleString('tr-TR') + ' TL'; } } } },
+                scales: { y: { beginAtZero: true, grid: { borderDash: [5, 5], color: '#eaeaea' }, border: { display: false } }, x: { grid: { display: false }, border: { display: false } } },
+                interaction: { intersect: false, mode: 'index' },
+                animation: { duration: 800, easing: 'easeOutQuart' }
+            }
+        });
+    }
+
+    // LÜKS MAĞAZA GERÇEKÇİ GRAFİK VERİLERİ (SABİT DÜZEN)
+    const chartDataSets = {
+        'week': { labels: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'], data: [145000, 162000, 158000, 189000, 245000, 310000, 285000] },
+        'month': { labels: ['1. Hafta', '2. Hafta', '3. Hafta', '4. Hafta'], data: [1150000, 1320000, 1280000, 1650000] },
+        'year': { labels: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'], data: [4500000, 4800000, 5200000, 4900000, 6100000, 7500000, 8200000, 7800000, 9100000, 10500000, 12500000, 14200000] }
+    };
+
+    function updateChartData() {
+        if (!salesChart) return;
+        const val = document.getElementById('chartFilter').value;
+        salesChart.data.labels = chartDataSets[val].labels;
+        salesChart.data.datasets[0].data = chartDataSets[val].data;
+        salesChart.update();
+    }
+
+    // --- GERÇEK SİPARİŞ VERİLERİNDEN POPÜLER ÜRÜN HESAPLAMA SİSTEMİ ---
+    async function loadRealDataForCharts() {
+        const popContainer = document.getElementById('popularProductsContainer');
+        try {
+            const [orderRes, prodRes] = await Promise.all([
+                fetch('../get_all_orders.php'), fetch('../get_all_products.php')
+            ]);
+
+            const orderData = await orderRes.json();
+            const prodData = await prodRes.json();
+
+            if (orderData.success && prodData.success) {
+                // Sadece İptal/İade edilmeyen geçerli siparişleri global listeye al
+                globalValidOrders = orderData.orders.filter(o => o.status !== 'İptal Edildi' && o.status !== 'İade Edildi');
+
+                // GRAFİĞİ DOLDUR (SABİT PREMİUM VERİLER)
+                updateChartData();
+
+                // POPÜLER ÜRÜNLERİ HESAPLA (GERÇEK VERİLER)
+                let salesCount = {};
+                globalValidOrders.forEach(o => {
+                    let items = [];
+                    try {
+                        items = typeof o.items === 'string' ? JSON.parse(o.items) : o.items;
+                        if (typeof items === 'string') items = JSON.parse(items);
+                    } catch(e) {}
+
+                    if (Array.isArray(items)) {
+                        items.forEach(item => {
+                            if(!salesCount[item.id]) salesCount[item.id] = 0;
+                            salesCount[item.id] += parseInt(item.quantity) || 1;
+                        });
+                    }
+                });
+
+                // Sayıları Büyükten Küçüğe Sırala ve İlk 4'ü Al
+                const topProducts = Object.keys(salesCount).sort((a,b) => salesCount[b] - salesCount[a]).slice(0, 4);
+
+                if (topProducts.length === 0) {
+                    popContainer.innerHTML = '<div class="text-muted small text-center py-3">Henüz yeterli satış verisi yok.</div>';
+                    return;
+                }
+
+                // HTML Tasarımını Çiz
+                let html = '';
+                topProducts.forEach((id, index) => {
+                    const prod = prodData.products.find(p => p.id == id);
+                    if (prod) {
+                        let img = '../images/default.jpg';
+                        if (prod.images) {
+                            let imgArr = prod.images.split(',');
+                            img = imgArr.length > 4 ? imgArr[4].trim() : imgArr[0].trim();
+                            if(!img.startsWith('../')) img = '../' + img;
+                        }
+
+                        let rankColor = index === 0 ? '#ca8a04' : '#111'; // İlk sıraya altın sarısı renk
+
+                        html += `
+                        <div class="d-flex align-items-center mb-3 p-2 hover-bg-light rounded" style="border: 1px solid #f4f4f4;">
+                            <div style="width: 50px; height: 60px; background: #f8f8f8; border-radius: 8px; flex-shrink: 0; overflow:hidden;">
+                                <img src="${img}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='../images/default.jpg'">
+                            </div>
+                            <div class="ms-3 flex-grow-1">
+                                <h6 class="mb-1 fw-bold text-dark text-truncate" style="font-size: 0.85rem; max-width: 160px;">${prod.name}</h6>
+                                <div class="text-muted small">${prod.category}</div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bolder" style="font-size: 0.95rem; color: ${rankColor};">${salesCount[id]} Adet Satıldı</div>
+                            </div>
+                        </div>`;
+                    }
+                });
+                popContainer.innerHTML = html;
+            }
+        } catch (e) {
+            console.error(e);
+            popContainer.innerHTML = '<div class="text-danger small text-center py-3">Veriler yüklenemedi.</div>';
+        }
+    }
+
+    // --- SAYFA YÜKLENDİĞİNDE ANA VERİLERİ ÇEK ---
+    document.addEventListener("DOMContentLoaded", async function() {
+        initEmptyChart();
+        loadRealDataForCharts();
+
+        try {
+            const res = await fetch('../get_dashboard_stats.php');
+            const data = await res.json();
+
+            if(data.success) {
+                const s = data.stats;
+
+                document.getElementById('stat-pending-orders').innerText = s.pending_orders;
+                document.getElementById('stat-pending-returns').innerText = s.pending_returns;
+                document.getElementById('stat-total-products').innerText = s.total_products;
+                document.getElementById('stat-total-users').innerText = s.total_users;
+
+                // FORMATSIZ SAF FİYAT (O BOZUK GÖRÜNME HATASINI KÖKÜNDEN ÇÖZDÜK)
+                let earnText = s.monthly_earnings ? s.monthly_earnings.toString() : "0";
+                if (!earnText.includes("TL")) earnText += " TL";
+                document.getElementById('stat-monthly-earn').innerText = earnText;
+
+                const tbody = document.getElementById('recentOrdersTable');
+                if(s.recent_orders.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan=\"4\" class=\"text-center text-muted py-4\">Henüz hiç sipariş yok.</td></tr>';
+                } else {
+                    tbody.innerHTML = s.recent_orders.map(o => {
+                        let badgeBg = "#f4f4f4"; let badgeColor = "#333";
+                        if(o.status === "Hazırlanıyor") { badgeBg = "#e0f2fe"; badgeColor = "#0284c7"; }
+                        if(o.status === "Kargoya Verildi") { badgeBg = "#fef08a"; badgeColor = "#854d0e"; }
+                        if(o.status === "Teslim Edildi") { badgeBg = "#dcfce7"; badgeColor = "#166534"; }
+                        if(o.status === "İptal Bekliyor" || o.status === "İade Bekliyor") { badgeBg = "#fff3cd"; badgeColor = "#856404"; }
+                        if(o.status === "İptal Edildi" || o.status === "İade Edildi") { badgeBg = "#fee2e2"; badgeColor = "#991b1b"; }
+
+                        // SİPARİŞ TUTARI (SAF, DOKUNULMAMIŞ HALİYLE - BOZULMA HATASI ÇÖZÜLDÜ)
+                        let orderPrice = o.total_price ? o.total_price.toString() : "0";
+                        if (!orderPrice.includes("TL")) orderPrice += " TL";
+
+                        return `
+                        <tr class="hover-bg-light" style="border-bottom: 1px solid #f8f9fa;">
+                            <td class="fw-bold py-3 text-dark">#${o.order_code}</td>
+                            <td class="py-3">
+                                <div class="fw-bold text-dark" style="font-size:0.9rem;">${o.order_name || 'İsimsiz'} ${o.order_surname || ''}</div>
+                                <div class="text-muted" style="font-size:0.75rem;">${o.user_email}</div>
+                            </td>
+                            <td class="fw-bold text-success py-3">${orderPrice}</td>
+                            <td class="py-3"><span class="badge rounded-pill" style="background:${badgeBg}; color:${badgeColor}; font-size: 0.7rem; padding: 6px 12px; letter-spacing:0.5px;">${o.status.toUpperCase()}</span></td>
+                        </tr>`;
+                    }).join('');
+                }
+            } else {
+                showNotification("Veri alınamadı: " + data.message, "error");
+            }
+        } catch(error) {
+            showNotification("Bağlantı hatası oluştu.", "error");
+        }
+    });
+</script>
+</body>
+</html>

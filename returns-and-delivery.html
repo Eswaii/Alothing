@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş, Teslimat ve İade - ALOTHING</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================== */
+        /* TEMEL AYARLAR VE LÜKS TİPOGRAFİ */
+        /* ========================================== */
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
+
+        .lux-tracking { letter-spacing: 5px; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; color: #888; display: block; margin-bottom: 20px;}
+        .display-title { font-weight: 200; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -2px; line-height: 1.1; margin-bottom: 30px; }
+
+        /* ========================================== */
+        /* ANİMASYON SINIFLARI */
+        /* ========================================== */
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .is-revealed { opacity: 1; transform: translate(0) scale(1); }
+        .delay-100 { transition-delay: 100ms; } .delay-200 { transition-delay: 200ms; }
+
+        /* ========================================== */
+        /* SAYFA TASARIMI */
+        /* ========================================== */
+        .legal-hero { padding: 180px 0 80px; text-align: center; border-bottom: 1px solid #f0f0f0; background: #fafafa; }
+        .legal-container { padding: 80px 0 150px; }
+
+        /* Sol Menü (Sticky) */
+        .sticky-nav { position: sticky; top: 120px; }
+        .legal-menu { list-style: none; padding: 0; margin: 0; border-left: 1px solid #eee; }
+        .legal-menu li { margin-bottom: 15px; }
+        .legal-menu a { display: block; padding-left: 20px; color: #888; text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: 0.3s; border-left: 2px solid transparent; margin-left: -1px; }
+        .legal-menu a:hover, .legal-menu a.active { color: #000; border-left-color: #000; font-weight: 500; }
+
+        /* Sağ İçerik (Okuma Alanı) */
+        .legal-content h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 1px; margin-top: 60px; margin-bottom: 25px; text-transform: uppercase; color: #111; }
+        .legal-content h3:first-child { margin-top: 0; }
+        .legal-content p { font-size: 1.05rem; line-height: 2; color: #555; font-weight: 300; margin-bottom: 25px; }
+        .legal-content ul { padding-left: 20px; margin-bottom: 25px; }
+        .legal-content li { font-size: 1.05rem; line-height: 2; color: #555; font-weight: 300; margin-bottom: 10px; }
+
+        .highlight-box { background: #fafafa; border: 1px solid #eee; padding: 30px; margin-top: 30px; margin-bottom: 30px; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        @media (max-width: 991px) {
+            .sticky-nav { position: static; margin-bottom: 50px; }
+            .legal-menu { border-left: none; border-top: 1px solid #eee; padding-top: 20px; display: flex; flex-wrap: wrap; gap: 15px; }
+            .legal-menu li { margin-bottom: 0; }
+            .legal-menu a { padding-left: 0; border-left: none; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+            .legal-menu a:hover, .legal-menu a.active { border-bottom-color: #000; border-left-color: transparent; }
+            .legal-hero { padding: 120px 0 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <section class="legal-hero">
+        <div class="container reveal-up is-revealed">
+            <span class="lux-tracking">Müşteri Deneyimi</span>
+            <h1 class="display-title">SİPARİŞ, TESLİMAT VE İADE</h1>
+            <p class="text-muted mx-auto" style="font-weight: 300; font-size: 1.1rem; max-width: 600px;">
+                Alışverişinizin her aşamasında ALOTHING kalitesini ve güvencesini hissetmeniz için çalışıyoruz.
+            </p>
+        </div>
+    </section>
+
+    <section class="legal-container container">
+        <div class="row">
+
+            <div class="col-lg-3 mb-5 mb-lg-0">
+                <div class="sticky-nav reveal-up delay-100">
+                    <ul class="legal-menu" id="legalMenu">
+                        <li><a href="#siparis-sureci" class="active">Sipariş Süreci</a></li>
+                        <li><a href="#teslimat-kosullari">Teslimat Koşulları</a></li>
+                        <li><a href="#iade-politikasi">İade Politikası</a></li>
+                        <li><a href="#degisim-islemleri">Değişim İşlemleri</a></li>
+                        <li><a href="#ucret-iadesi">Ücret İadesi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-8 offset-lg-1 legal-content">
+
+                <div id="siparis-sureci" class="reveal-up delay-200">
+                    <h3>1. Sipariş Süreci</h3>
+                    <p>ALOTHING üzerinden verdiğiniz her sipariş, özenle ve yüksek kalite standartlarına uygun olarak hazırlanır. Siparişiniz başarıyla oluşturulduğunda, kayıtlı e-posta adresinize detayları içeren bir onay maili gönderilecektir.</p>
+                    <p>Siparişiniz kargoya teslim edilene kadar (genellikle 2-4 saat arası) adres veya iletişim bilgilerinizde değişiklik talep edebilirsiniz. Bunun için Müşteri İlişkileri departmanımızla vakit kaybetmeden iletişime geçmenizi rica ederiz.</p>
+                </div>
+
+                <div id="teslimat-kosullari" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>2. Teslimat Koşulları</h3>
+                    <p>Hafta içi saat 14:00'a kadar verdiğiniz siparişler aynı gün içerisinde, 14:00'dan sonra verilen siparişler ise bir sonraki iş günü kargoya teslim edilmektedir. Özel günlerde veya kampanya dönemlerinde bu süre 1-2 iş günü uzayabilir.</p>
+
+                    <div class="highlight-box">
+                        <strong class="d-block mb-2 text-uppercase" style="letter-spacing:1px; font-size:0.85rem;">Kargo Ücretleri ve Süreleri</strong>
+                        <ul>
+                            <li>Türkiye'nin her yerine <strong>2599 TL ve üzeri</strong> siparişlerde kargo ücretsizdir.</li>
+                            <li>İstanbul içi teslimatlar genellikle kargoya verildikten sonra 1 iş günü içerisinde gerçekleşir.</li>
+                            <li>İstanbul dışı teslimatlar uzaklığa bağlı olarak 2-3 iş günü sürmektedir.</li>
+                        </ul>
+                    </div>
+
+                    <p>Siparişiniz kargoya verildiğinde size otomatik olarak kargo takip bağlantısı içeren bir e-posta ve SMS gönderilecektir.</p>
+                </div>
+
+                <div id="iade-politikasi" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>3. İade Politikası</h3>
+                    <p>Ürünlerimizden herhangi bir nedenle memnun kalmamanız durumunda, siparişinizi teslim aldığınız tarihten itibaren <strong>14 gün içerisinde ücretsiz</strong> iade edebilirsiniz.</p>
+                    <p>İade edilecek ürünlerin kabul edilebilmesi için şu şartları sağlaması gerekmektedir:</p>
+                    <ul>
+                        <li>Ürün kullanılmamış, yıkanmamış ve tadilat görmemiş olmalıdır.</li>
+                        <li>Orijinal etiketleri ve varsa güvenlik mühürleri kesinlikle sökülmemiş olmalıdır.</li>
+                        <li>Ürün, size gönderildiği orijinal lüks kutusu ve/veya koruyucu kılıfı ile birlikte, faturasıyla (veya e-fatura çıktısıyla) iade edilmelidir.</li>
+                    </ul>
+                    <p>Kullanıcı hesabınıza giriş yapıp "Siparişlerim" bölümünden saniyeler içerisinde iade talebi oluşturabilir ve sistemin vereceği iade koduyla ürünleri anlaşmalı kargo firmamıza ücretsiz teslim edebilirsiniz.</p>
+                </div>
+
+                <div id="degisim-islemleri" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>4. Değişim İşlemleri</h3>
+                    <p>Web sitemiz üzerinden satın aldığınız ürünleri, dilerseniz faturanızla birlikte 30 gün içerisinde <strong>fiziksel ALOTHING mağazalarımızdan</strong> farklı bir beden veya renk ile anında değiştirebilirsiniz.</p>
+                    <p>Online depomuz üzerinden direkt değişim yapılmamaktadır. Online değişim talepleri için ürünü ücretsiz iade edebilir ve dilediğiniz yeni beden/ürün için hızlıca yeni bir sipariş oluşturabilirsiniz.</p>
+                </div>
+
+                <div id="ucret-iadesi" class="reveal-up mt-5 pt-4 border-top">
+                    <h3>5. Ücret İadesi Süreci</h3>
+                    <p>İade ettiğiniz paket depomuza ulaştığında, ürünler kalite kontrol ekibimiz tarafından titizlikle incelenir. İade şartlarına uygun olan ürünlerin ücret iade onayı 1-3 iş günü içerisinde gerçekleştirilir.</p>
+                    <p>İade onayınızın ardından, tutar alışveriş yaparken kullandığınız kredi/banka kartınıza iade edilir. İade tutarının hesabınıza veya ekstrenize yansıma süresi bankanızın süreçlerine bağlı olarak genellikle <strong>2 ile 7 iş günü</strong> arasında değişiklik göstermektedir.</p>
+
+                    <p class="mt-5 mb-0 fw-bold text-dark">Yardıma mı İhtiyacınız Var?</p>
+                    <p>Sipariş, kargo veya iade süreçleriyle ilgili daha detaylı bilgi için lütfen <a href="contact.html" style="color:#000;">Müşteri İlişkileri</a> ekibimizle iletişime geçmekten çekinmeyin.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="dynamic-footer"></div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Navbar ve Footer Yükleme
+            fetch('navbar.html').then(r => r.text()).then(html => { document.getElementById('navbar-placeholder').innerHTML = html; });
+            fetch('footer.html').then(r => r.text()).then(html => { document.getElementById('dynamic-footer').innerHTML = html; });
+
+            // SCROLL ANİMASYONLARI MOTORU
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+            // SOL MENÜ AKTİF LİNK TAKİBİ (Scrollspy Mantığı)
+            const sections = document.querySelectorAll('.legal-content > div[id]');
+            const navLinks = document.querySelectorAll('.legal-menu a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth Scroll
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/login.js" charset="utf-8"></script>
+    <script src="js/navbar.js" charset="utf-8"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

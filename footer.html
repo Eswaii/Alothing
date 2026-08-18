@@ -1,0 +1,71 @@
+<style>
+    /* Footer linkleri üzerine gelince siyah olması için küçük bir dokunuş */
+    .footer-link { transition: color 0.2s ease; }
+    .footer-link:hover { color: #000 !important; }
+</style>
+
+<footer class="bg-white pt-5 pb-5 mt-5 border-top" style="position: relative; z-index: 20;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-4 mb-4">
+                <h6 class="fw-bold text-dark mb-4" style="font-size: 0.95rem; letter-spacing: 0.5px;">Hesabım</h6>
+
+                <ul class="list-unstyled" id="footer-logged-out">
+    <li class="mb-2"><a href="#" onclick="openLoginOffcanvas('register'); return false;" class="text-decoration-none text-secondary footer-link">Kayıt Ol</a></li>
+    <li class="mb-2"><a href="#" onclick="openLoginOffcanvas('login'); return false;" class="text-decoration-none text-secondary footer-link">Giriş Yap</a></li>
+    <li class="mb-2"><a href="forgot-password.html" class="text-decoration-none text-secondary footer-link">Şifremi Unuttum</a></li>
+    <li class="mb-2"><a href="order-tracking.html" class="text-decoration-none text-secondary footer-link">Sipariş Takibi</a></li>
+</ul>
+
+                <ul class="list-unstyled" id="footer-logged-in" style="display: none;">
+      <li class="mb-2"><a href="account.html?tab=profile" class="text-decoration-none text-secondary footer-link">Hesabım</a></li>
+      <li class="mb-2"><a href="account.html?tab=orders" class="text-decoration-none text-secondary footer-link">Siparişlerim</a></li>
+      <li class="mb-2"><a href="account.html?tab=returns" class="text-decoration-none text-secondary footer-link">İade ve Taleplerim</a></li>
+      <li class="mb-2"><a href="order-tracking.html" class="text-decoration-none text-secondary footer-link">Kargo Takip</a></li>
+  </ul>
+            </div>
+
+            <div class="col-12 col-md-4 mb-4">
+                <h6 class="fw-bold text-dark mb-4" style="font-size: 0.95rem; letter-spacing: 0.5px;">Hakkımızda</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="contact.html" class="text-decoration-none text-secondary footer-link">İletişim</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-decoration-none text-secondary footer-link">Hikayemiz</a></li>
+                    <li class="mb-2"><a href="terms.html" class="text-decoration-none text-secondary footer-link">Hizmet Kullanım Şartları</a></li>
+                    <li class="mb-2"><a href="privacy.html" class="text-decoration-none text-secondary footer-link">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 mb-4">
+                <h6 class="fw-bold text-dark mb-4" style="font-size: 0.95rem; letter-spacing: 0.5px;">Yardım</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="faq.html" class="text-decoration-none text-secondary footer-link">Sıkça Sorulan Sorular</a></li>
+                    <li class="mb-2"><a href="returns-and-delivery.html" class="text-decoration-none text-secondary footer-link">Sipariş, Teslimat & İade</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="row mt-4 pt-4 border-top align-items-center">
+             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                 <p class="text-muted small mb-0">&copy; 2026 ALOTHING. Tüm hakları saklıdır.</p>
+             </div>
+             <div class="col-md-6 text-center text-md-end">
+             </div>
+        </div>
+    </div>
+</footer>
+
+<img src="x" onerror="
+    const userStr = localStorage.getItem('user');
+    if(userStr) {
+        try {
+            const u = JSON.parse(userStr);
+            if(u && u.email) {
+                document.getElementById('footer-logged-out').style.display = 'none';
+                document.getElementById('footer-logged-in').style.display = 'block';
+            }
+        } catch(e) {}
+    }
+    this.remove();
+" style="display:none;">

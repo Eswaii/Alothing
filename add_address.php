@@ -1,16 +1,10 @@
 <?php
 header("Content-Type: application/json");
 $conn = new mysqli("localhost", "root", "", "alothing_db");
-$conn->set_charset("utf8mb4"); // Türkçe karakter desteği
+$conn->set_charset("utf8mb4");
 $data = json_decode(file_get_contents("php://input"));
 
-if (!empty($data->email)) {
-    $stmt = $conn->prepare("INSERT INTO addresses (user_email, name, surname, phone, address_line, apartment, zip_code, city, district) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssss", $data->email, $data->name, $data->surname, $data->phone, $data->address, $data->apartment, $data->zip, $data->city, $data->district);
-
-    if($stmt->execute()) echo json_encode(["success" => true]);
-    else echo json_encode(["success" => false, "message" => "Kayıt hatası"]);
-} else {
-    echo json_encode(["success" => false, "message" => "Oturum hatası"]);
-}
+$stmt = $conn->prepare("INSERT INTO addresses (user_email, address_title, name, surname, phone, address_line, zip_code, city, district) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssssss", $data->email, $data->title, $data->name, $data->surname, $data->phone, $data->address, $data->zip, $data->city, $data->district);
+echo json_encode(["success" => $stmt->execute()]);
 ?>

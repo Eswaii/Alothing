@@ -1,125 +1,129 @@
 body { font-family: 'Inter', sans-serif; background-color: #fff; }
 
-        /* === ÜRÜN KARTI TASARIMI (ZARA/BERSHKA STİLİ) === */
-        .product-card {
-            position: relative;
-            cursor: pointer;
-            margin-bottom: 30px;
-        }
+/* === ULTRA PREMIUM ÜRÜN KARTI & HIZLI EKLE === */
+.premium-card { cursor: pointer; position: relative; margin-bottom: 30px; }
 
-        /* Görsel Alanı */
-        .card-img-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 4; /* Dikdörtgen oranı */
-            overflow: hidden;
-            background-color: #f0f0f0;
-        }
+/* Görsel Alanı */
+.pc-img-wrapper {
+    position: relative;
+    aspect-ratio: 3/4; /* Tam lüks moda markası ölçüsü */
+    overflow: hidden;
+    background: #f8f8f8;
+}
+.pc-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-card:hover .pc-img { transform: scale(1.05); }
 
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+/* Hızlı Ekle Paneli (Aşağıdan Kayarak Çıkar) */
+.quick-add-panel {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 10px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+.premium-card:hover .quick-add-panel { transform: translateY(0); }
 
-        /* Hover'da görsel hafif zoom yapsın */
-        .product-card:hover .card-img {
-            transform: scale(1.03);
-        }
+.qa-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: #000; text-transform: uppercase; margin-bottom: 2px;}
+.qa-sizes { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
 
-        /* Kalp İkonu */
-        .wishlist-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            z-index: 5;
-        }
+/* Hızlı Ekle Beden Butonları */
+.qa-size-btn {
+    width: 32px; height: 32px; padding: 0;
+    border: 1px solid #ddd; background: #fff; border-radius: 50%;
+    font-size: 0.75rem; font-weight: 700; color: #333;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s ease;
+}
+.qa-size-btn:hover { border-color: #000; background: #000; color: #fff; transform: translateY(-2px); }
 
-        /* BEDEN SEÇİMİ (HOVER İLE ÇIKAN) */
-        .size-selector-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 10px;
-            text-align: center;
+/* Favori İkonu Kartın İçinde */
+.pc-fav-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(5px);
+    border: none; width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(-10px);
+    transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.08); z-index: 5;
+}
+.premium-card:hover .pc-fav-btn { opacity: 1; transform: translateY(0); }
+.pc-fav-btn:hover { background: #fff; transform: scale(1.1); }
 
-            /* Başlangıçta gizli (aşağıda) */
-            transform: translateY(100%);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-        }
+/* Ürün Bilgileri (Resmin Altında Tertemiz) */
+.pc-info { margin-top: 12px; display: flex; flex-direction: column; gap: 4px; padding-right: 5px; }
+.product-name { font-size: 0.8rem; color: #222; margin-bottom: 2px; text-transform: capitalize; }
+.product-price { font-size: 0.85rem; font-weight: 700; color: #000; }
+.old-price { text-decoration: line-through; color: #999; margin-right: 5px; font-weight: 400; font-size: 0.8rem; }
+.discount-badge { background-color: #d32f2f; color: white; font-size: 0.7rem; padding: 1px 4px; font-weight: 700; margin-left: 5px; }
+.promo-tag { color: #d32f2f; font-size: 0.7rem; font-weight: 700; margin-top: 4px; text-transform: uppercase; }
 
-        /* Hover olunca yukarı kay */
-        .product-card:hover .size-selector-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
+/* === VARYANT RENK NOKTALARI (ZARA STYLE) === */
+.color-dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin-right: 4px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.color-dot:hover {
+    transform: scale(1.2);
+    border-color: #888;
+}
+/* O anki ürünün rengi aktif olarak gösterilir */
+.color-dot.active-color {
+    border: 1px solid #000;
+    box-shadow: 0 0 0 2px #fff inset; /* İç içe lüks halka görünümü */
+    transform: scale(1.1);
+}
 
-        .size-span {
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin: 0 8px;
-            color: #333;
-            cursor: pointer;
-        }
-        .size-span:hover { text-decoration: underline; }
+/* Mobilde Tasarım İyileştirmesi */
+@media (max-width: 991px) {
+    .pc-fav-btn { opacity: 1; transform: translateY(0); }
+    .quick-add-panel { padding: 10px 5px; }
+    .qa-title { display: none; } /* Mobilde yer kazanmak için başlığı gizle */
+    .qa-size-btn { width: 28px; height: 28px; font-size: 0.7rem; }
+}
+/* =========================================
+   HOVER (ÜZERİNE GELİNCE) 2. RESİM EFEKTİ & Z-INDEX AYARI
+========================================= */
+.primary-img {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+.secondary-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
 
-        /* BİLGİ ALANI */
-        .product-info {
-            padding-top: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
+/* SADECE resmin üzerine gelince (renklerde değil) çalışsın */
+.pc-img-wrapper:has(.secondary-img):hover .primary-img {
+    opacity: 0;
+}
+.pc-img-wrapper:hover .secondary-img {
+    opacity: 1;
+    transform: scale(1.05);
+}
 
-        .product-name {
-            font-size: 0.8rem; /* Küçük font (minimalist) */
-            color: #222;
-            margin-bottom: 4px;
-            text-transform: capitalize;
-        }
-
-        .product-price {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #000;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: #999;
-            margin-right: 5px;
-            font-weight: 400;
-        }
-
-        .discount-badge {
-            background-color: #d32f2f; /* Kırmızı */
-            color: white;
-            font-size: 0.7rem;
-            padding: 1px 4px;
-            font-weight: 700;
-            margin-left: 5px;
-        }
-
-        .promo-tag {
-            color: #d32f2f;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-top: 4px;
-            text-transform: uppercase;
-        }
-
-        .color-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-            border: 1px solid #ddd;
-            margin-top: 5px;
-        }
-        .plus-color { font-size: 0.7rem; color: #777; }
+/* Hızlı Ekle Paneli ve Favori İkonu resimlerin altında kalmasın diye Z-Index ekledik */
+.quick-add-panel {
+    z-index: 20 !important;
+}
+.pc-fav-btn {
+    z-index: 20 !important;
+}

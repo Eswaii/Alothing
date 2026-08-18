@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hikayemiz - ALOTHING</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
+
+        .lux-tracking { letter-spacing: 5px; text-transform: uppercase; font-size: 0.75rem; font-weight: 500; color: #888; display: block; margin-bottom: 20px;}
+        .display-title { font-weight: 200; font-size: clamp(3rem, 6vw, 6rem); letter-spacing: -3px; line-height: 1; margin-bottom: 30px; }
+        .editorial-text { font-size: 1.15rem; line-height: 2.1; color: #555; font-weight: 300; }
+        .editorial-text-large { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; line-height: 1.4; color: #111; font-style: italic; }
+
+        .reveal-up { opacity: 0; transform: translateY(80px); transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-left { opacity: 0; transform: translateX(-80px); transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-right { opacity: 0; transform: translateX(80px); transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .is-revealed { opacity: 1; transform: translate(0) scale(1); }
+        .delay-100 { transition-delay: 100ms; } .delay-200 { transition-delay: 200ms; } .delay-300 { transition-delay: 300ms; }
+
+        .about-hero { position: relative; height: 100vh; min-height: 800px; display: flex; align-items: center; justify-content: center; text-align: center; background: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat; background-attachment: fixed; }
+        .about-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        .about-hero-content { position: relative; z-index: 2; color: #fff; }
+        .hero-logo { font-weight: 700; letter-spacing: 20px; font-size: clamp(3rem, 8vw, 7rem); margin-bottom: 10px; margin-right: -20px; }
+
+        .section-padding { padding: 180px 0; }
+        .img-container { overflow: hidden; position: relative; }
+        .img-parallax { width: 100%; height: 120%; object-fit: cover; position: absolute; top: -10%; left: 0; }
+        .img-tall-wrapper { height: 900px; }
+
+        .overlap-box { background: #fff; padding: 60px; margin-top: -150px; position: relative; z-index: 10; box-shadow: 0 30px 60px rgba(0,0,0,0.05); margin-left: -50px; }
+        .dark-atelier { background-color: #070707; color: #fff; padding: 200px 0; }
+        .dark-atelier .editorial-text { color: #aaa; }
+        .atelier-img { height: 700px; width: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); transition: filter 1s; }
+        .atelier-img:hover { filter: grayscale(0%) contrast(1); }
+
+        .fabric-grid { display: flex; gap: 20px; margin-top: 80px; }
+        .fabric-item { flex: 1; overflow: hidden; position: relative; height: 500px; cursor: pointer; }
+        .fabric-img { width: 100%; height: 100%; object-fit: cover; transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fabric-item:hover .fabric-img { transform: scale(1.1); }
+        .fabric-label { position: absolute; bottom: 30px; left: 30px; color: #fff; font-size: 0.8rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
+        .fabric-item::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%); z-index: 1; transition: opacity 0.5s; opacity: 0.7; }
+        .fabric-item:hover::before { opacity: 1; }
+
+        @media (max-width: 991px) {
+            .overlap-box { margin-left: 0; margin-top: -50px; padding: 40px 20px; }
+            .fabric-grid { flex-direction: column; }
+            .fabric-item { height: 400px; }
+            .img-tall-wrapper { height: 600px; }
+            .section-padding, .dark-atelier { padding: 100px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <section class="about-hero">
+        <div class="about-hero-content container reveal-up is-revealed">
+            <h1 class="hero-logo">ALOTHING</h1>
+            <p class="lux-tracking text-white" style="letter-spacing: 8px;">Gürültüden Uzak, İhtişama Yakın</p>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 180px 0 100px;">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-10">
+                <p class="editorial-text-large reveal-up">"Gerçek lüks, bağırmaz. Sadece hissedilir. ALOTHING, geçici trendlerin gürültüsünden arınmış, karakterinizi kumaşın dokusuyla anlatan bir sessiz lüks manifestosudur."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0 container overflow-hidden">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="img-container img-tall-wrapper reveal-scale">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" class="img-parallax" data-speed="0.15" alt="Alothing Tarzı">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="overlap-box reveal-left delay-200">
+                    <span class="lux-tracking">Vizyonumuz</span>
+                    <h2 class="display-title mt-3 mb-4">Zamanın<br>Ötesinde.</h2>
+                    <p class="editorial-text">Moda her altı ayda bir değişirken, stil bir ömür boyu sürer. Biz, her sezon dolabınızı yenilemeniz gerektiğine inanmıyoruz. Amacımız, yıllar sonra bile üzerinize ilk günkü gibi yakışacak, klasik ama modern çizgilere sahip "kapsül" parçalar yaratmak.</p>
+                    <p class="editorial-text mt-4">Kusursuz kalıplar ve nötr renk paletleriyle tasarlanan her ALOTHING ürünü, sabah ofisten çıkıp gece davete katılabileceğiniz kadar esnek ve güçlüdür.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-atelier overflow-hidden">
+        <div class="container">
+            <div class="row align-items-center flex-column-reverse flex-lg-row">
+                <div class="col-lg-6 mt-5 mt-lg-0 pe-lg-5">
+                    <span class="lux-tracking reveal-up">Zanaatın Kalbi</span>
+                    <h2 class="display-title text-white mt-3 reveal-up delay-100">Kusursuz<br>İşçilik.</h2>
+                    <p class="editorial-text reveal-up delay-200 mt-5">Dikiş ipliğinin gerginliğinden, ceketin astarının teninize değdiği ana kadar... ALOTHING atölyelerinden çıkan her parça, usta terzilerin elinden geçer.</p>
+                    <div class="row mt-5 pt-4 border-top border-secondary reveal-up delay-300">
+                        <div class="col-6">
+                            <h4 class="text-white fw-light fs-1 mb-2">40+</h4>
+                            <span class="lux-tracking" style="font-size:0.65rem;">Yıllık Terzilik Deneyimi</span>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-white fw-light fs-1 mb-2">100%</h4>
+                            <span class="lux-tracking" style="font-size:0.65rem;">Kalite Kontrol</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="img-container reveal-right">
+                        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?q=80&w=2000&auto=format&fit=crop" class="atelier-img" alt="Terzi Atölyesi">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <div class="text-center reveal-up">
+            <span class="lux-tracking">Materyaller</span>
+            <h2 class="display-title mt-3">Dokunma Duyusuna<br>Övgü.</h2>
+            <p class="editorial-text mx-auto mt-4" style="max-width: 700px;">Tasarım ne kadar iyi olursa olsun, onu hayata geçiren kumaştır. Dünyanın en seçkin dokuma fabrikalarından elde edilen doğal iplikler, ALOTHING koleksiyonlarının temelini oluşturur.</p>
+        </div>
+        <div class="fabric-grid reveal-up delay-200">
+            <div class="fabric-item">
+                <img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=1000&auto=format&fit=crop" class="fabric-img" alt="Saf İpek">
+                <div class="fabric-label">SAF İPEK</div>
+            </div>
+            <div class="fabric-item">
+                <img src="https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?q=80&w=1000&auto=format&fit=crop" class="fabric-img" alt="Moğol Kaşmiri">
+                <div class="fabric-label">MOĞOL KAŞMİRİ</div>
+            </div>
+            <div class="fabric-item">
+                <img src="https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?q=80&w=1000&auto=format&fit=crop" class="fabric-img" alt="Organik Pamuk">
+                <div class="fabric-label">ORGANİK PAMUK</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="img-container" style="height: 80vh; min-height: 600px;">
+        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop" class="img-parallax" data-speed="0.2" alt="Doğa">
+        <div style="position: absolute; inset: 0; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center;">
+            <div class="container text-center reveal-up">
+                <span class="lux-tracking text-dark">Geleceğe Bırakılan İz</span>
+                <h2 class="display-title text-dark mt-3">Sürdürülebilir<br>Bir Miras.</h2>
+                <p class="editorial-text text-dark mx-auto mt-4" style="max-width: 600px;">Doğadan aldığımız ilhamı, ona saygı duyarak koruyoruz. Etik çalışma standartları ve çevre dostu üretim süreçleriyle, sadece gardırobunuza değil, gezegenin geleceğine de yatırım yapıyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="dynamic-footer"></div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/login.js" charset="utf-8"></script>
+    <script src="js/navbar.js" charset="utf-8"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('footer.html').then(r => r.text()).then(html => { document.getElementById('dynamic-footer').innerHTML = html; });
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); obs.unobserve(entry.target); }
+                });
+            }, { rootMargin: '0px', threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+            const parallaxImages = document.querySelectorAll('.img-parallax');
+            window.addEventListener('scroll', () => {
+                let scrolled = window.pageYOffset;
+                parallaxImages.forEach(img => {
+                    let speed = img.getAttribute('data-speed') || 0.15;
+                    let rect = img.parentElement.getBoundingClientRect();
+                    if(rect.top < window.innerHeight && rect.bottom > 0) { img.style.transform = `translateY(${scrolled * speed}px)`; }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

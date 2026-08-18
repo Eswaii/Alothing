@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Yönetimi - ALOTHING Admin</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #000; }
+        .sidebar { background-color: #000; min-height: 100vh; color: #fff; padding-top: 40px; }
+        .sidebar a { color: #888; text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 15px 30px; font-size: 0.9rem; font-weight: 500; transition: 0.3s; letter-spacing: 0.5px; }
+        .sidebar a:hover, .sidebar a.active { color: #fff; background: rgba(255,255,255,0.05); border-right: 3px solid #fff; }
+        .page-title { font-weight: 700; letter-spacing: -0.5px; font-size: 1.8rem; }
+        .table-custom th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #888; border-bottom: 2px solid #000; padding-bottom: 15px; }
+        .table-custom td { vertical-align: middle; padding: 15px 10px; font-size: 0.95rem; border-bottom: 1px solid #eee; }
+        .product-img-thumbnail { width: 50px; height: 65px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
+        .badge-category { background: #f0f0f0; color: #333; padding: 6px 10px; font-size: 0.7rem; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;}
+        .custom-input { border: 1px solid #ddd; border-radius: 0; padding: 12px 15px; width: 100%; font-size: 0.95rem; }
+        .custom-input:focus { border-color: #000; outline: none; box-shadow: none; }
+        .form-label-custom { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #666; margin-bottom: 5px; display: block; }
+    </style>
+</head>
+<body>
+
+<script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user || user.role !== 'admin') { window.location.href = "../index.html"; }
+</script>
+
+<div class="d-flex">
+    <div class="sidebar" style="width: 260px; flex-shrink: 0;">
+        <div class="px-4 mb-5 pb-3 border-bottom border-secondary border-opacity-25">
+            <h4 class="fw-bold text-white tracking-widest mb-0" style="letter-spacing: 4px;">ALOTHING</h4>
+            <span class="text-white-50" style="font-size: 0.7rem; letter-spacing: 2px;">MANAGEMENT</span>
+        </div>
+
+        <a href="index.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg> ANA PANO
+        </a>
+        <a href="orders.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg> SİPARİŞLER
+        </a>
+        <a href="products.html" class="active">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg> ÜRÜNLER
+        </a>
+        <a href="users.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> MÜŞTERİLER
+        </a>
+        <a href="coupons.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg> KUPONLAR
+        </a>
+        <a href="stocks.html">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg> STOKLAR
+        </a>
+        <a href="messages.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg> MESAJLAR</a>
+        <a href="comments.html"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> YORUMLAR</a>
+
+        <div class="mt-auto pt-5">
+            <a href="#" onclick="logout()" class="text-white-50 opacity-75 hover-white">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> GÜVENLİ ÇIKIŞ
+            </a>
+            <div class="px-4 py-3 text-white-50" style="font-size: 0.65rem;">
+                Giriş Yapan:<br><span class="text-white fw-bold" id="adminNameDisplay"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-grow-1 p-5" style="overflow-y: auto; height: 100vh;">
+
+        <div class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom">
+            <div>
+                <h1 class="page-title text-dark">Ürün Yönetimi</h1>
+                <p class="text-muted small mb-0">Mağazanızdaki ürünleri listeleyin, güncelleyin veya yeni ürün ekleyin.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="../index.html" class="btn btn-outline-dark rounded-0 px-4 fw-bold small">MAĞAZAYA DÖN</a>
+                <button onclick="openAddProductModal()" class="btn btn-black rounded-0 px-4 fw-bold small" style="background: #000; color: #fff;">+ YENİ ÜRÜN EKLE</button>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 border shadow-sm" style="border-radius: 8px;">
+            <table class="table table-borderless table-hover table-custom w-100 align-middle">
+                <thead>
+                    <tr>
+                        <th width="80">Görsel</th>
+                        <th>Ürün Adı & Referans</th>
+                        <th>Kategori</th>
+                        <th>Fiyat</th>
+                        <th class="text-end">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody id="adminProductsTable">
+                    <tr><td colspan="5" class="text-center py-5">Ürünler yükleniyor...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-0 border-0 shadow-lg">
+            <div class="modal-header border-bottom-0 bg-light p-4">
+                <h4 class="modal-title fw-bold mb-0" id="modalProductTitle">YENİ ÜRÜN EKLE</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="productForm" onsubmit="saveProduct(event)">
+                    <input type="hidden" id="prodId">
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label class="form-label-custom">Ürün Adı</label>
+                            <input type="text" id="prodName" class="custom-input" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-custom">Referans (Kodu)</label>
+                            <input type="text" id="prodRef" class="custom-input">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 border-bottom pb-3">
+                        <div class="col-md-8">
+                            <label class="form-label-custom">Model Bilgisi</label>
+                            <input type="text" id="prodModelInfo" class="custom-input" placeholder="Örn: Modelin boyu: 189 cm - Beden L">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-custom text-primary">Renk Grubu ID</label>
+                            <input type="number" id="prodColorGroupId" class="custom-input" placeholder="Örn: 101">
+                        </div>
+                    </div>
+
+                    <div class="row mb-4 align-items-end bg-light p-3">
+                        <div class="col-md-4">
+                            <label class="form-label-custom">Birim Fiyatı (TL)</label>
+                            <input type="number" step="0.01" id="prodPrice" class="custom-input" required>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="hasDiscount" onchange="toggleDiscount()">
+                                <label class="form-check-label fw-bold" for="hasDiscount">İndirim Uygula</label>
+                            </div>
+                            <input type="number" id="prodDiscountPercent" class="custom-input" placeholder="% İndirim Oranı" disabled>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-custom text-danger">Müşterinin Ödeyeceği Fiyat</label>
+                            <input type="text" id="prodFinalPrice" class="custom-input fw-bold text-danger" disabled readonly>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Bedenler (Virgülle ayırın)</label>
+                            <input type="text" id="prodSizes" class="custom-input" placeholder="Örn: S,M,L,XL">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Kategori</label>
+                            <input type="text" id="prodCategory" class="custom-input" placeholder="Örn: ceket,indirim">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label-custom">Renkler (Dinamik)</label>
+                            <div id="colorContainer"></div>
+                            <button type="button" class="btn btn-sm btn-outline-dark mt-2 fw-bold" onclick="addColorRow()">+ RENK EKLE</button>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4 border-top pt-3">
+                        <div class="col-md-12">
+                            <label class="form-label-custom">Ürün Görselleri (Dosya Seçici)</label>
+                            <input type="file" id="prodImages" class="custom-input" multiple accept="image/*" style="padding: 9px 15px;">
+                            <input type="hidden" id="prodExistingImages">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-black w-100 py-3 fw-bold" style="background:#000; color:#fff;" id="saveProdBtn">KAYDET</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script>
+    // TOAST BİLDİRİM SİSTEMİ
+    function injectToastSystem() { if (document.getElementById('alothing-toast-style')) return; const style = document.createElement('style'); style.id = 'alothing-toast-style'; style.innerHTML = `#alothing-toast-container { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 999999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; } .alothing-toast { min-width: 320px; background-color: #000; color: #fff; padding: 16px 24px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; box-shadow: 0 15px 35px rgba(0,0,0,0.2); display: flex; align-items: center; opacity: 0; transform: translateY(-20px); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); letter-spacing: 0.5px; } .alothing-toast.show { opacity: 1; transform: translateY(0); } .alothing-toast.error { background-color: #dc2626; } .alothing-toast svg { margin-right: 12px; flex-shrink: 0; }`; document.head.appendChild(style); if (!document.getElementById('alothing-toast-container')) { const container = document.createElement('div'); container.id = 'alothing-toast-container'; document.body.appendChild(container); } }
+    function showNotification(msg, type = 'success') { injectToastSystem(); const container = document.getElementById('alothing-toast-container'); const toast = document.createElement('div'); toast.className = `alothing-toast ${type === 'error' ? 'error' : ''}`; const icon = type === 'error' ? `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` : `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`; toast.innerHTML = `${icon} <span>${msg}</span>`; container.appendChild(toast); setTimeout(() => toast.classList.add('show'), 10); setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3500); }
+
+    let allProducts = [];
+    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+
+    document.addEventListener("DOMContentLoaded", function() {
+        if(document.getElementById('adminNameDisplay') && user.name) {
+            document.getElementById('adminNameDisplay').innerText = user.name;
+        }
+        loadAllProducts();
+    });
+
+    document.getElementById('prodPrice').addEventListener('input', calculateFinalPrice);
+    document.getElementById('prodDiscountPercent').addEventListener('input', calculateFinalPrice);
+
+    function toggleDiscount() {
+        const hasDiscount = document.getElementById('hasDiscount').checked;
+        const discInput = document.getElementById('prodDiscountPercent');
+        discInput.disabled = !hasDiscount;
+        if(!hasDiscount) discInput.value = '';
+        calculateFinalPrice();
+    }
+
+    function calculateFinalPrice() {
+        const basePrice = parseFloat(document.getElementById('prodPrice').value) || 0;
+        const hasDiscount = document.getElementById('hasDiscount').checked;
+        const discPercent = parseFloat(document.getElementById('prodDiscountPercent').value) || 0;
+
+        let finalPrice = basePrice;
+        if (hasDiscount && discPercent > 0) {
+            finalPrice = basePrice - (basePrice * discPercent / 100);
+        }
+        document.getElementById('prodFinalPrice').value = finalPrice.toFixed(2) + " TL";
+    }
+
+    function loadAllProducts() {
+        const tbody = document.getElementById('adminProductsTable');
+
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-5 text-muted"><div class="spinner-border text-dark spinner-border-sm me-2" role="status"></div>Ürünler Yükleniyor...</td></tr>';
+
+        fetch('../get_all_products.php')
+        .then(async r => {
+            const text = await r.text();
+            try {
+                const res = JSON.parse(text);
+                if(res.success && res.products.length > 0) {
+                    allProducts = res.products;
+                    renderAdminProducts(allProducts);
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-5 text-muted fw-bold">Sistemde kayıtlı ürün bulunmuyor.</td></tr>';
+                }
+            } catch (e) {
+                console.error("PHP HATASI:", text);
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="5" class="text-center py-5 text-danger">
+                        <h6 class="fw-bold mb-3">PHP Dosyasında Hata Var!</h6>
+                        <textarea class="form-control rounded-0 text-start bg-light" rows="6" readonly>${text}</textarea>
+                    </td>
+                </tr>`;
+            }
+        })
+        .catch(err => {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-5 text-danger fw-bold">Sunucuya bağlanılamadı (Ağ Hatası).</td></tr>';
+        });
+    }
+
+    function renderAdminProducts(products) {
+        const tbody = document.getElementById('adminProductsTable');
+        tbody.innerHTML = products.map(product => {
+            let firstImage = '../images/default.jpg';
+
+            if (product.images && product.images.trim() !== "") {
+                let imgArray = product.images.split(',');
+                let selectedImg = imgArray.length > 4 ? imgArray[4].trim() : imgArray[0].trim();
+
+                if(selectedImg.startsWith('../')) {
+                    firstImage = selectedImg;
+                } else {
+                    firstImage = '../' + selectedImg;
+                }
+            }
+
+            const showOldPrice = (product.old_price && parseFloat(product.old_price) > 0)
+                ? `<div class="text-muted small text-decoration-line-through">${parseFloat(product.old_price).toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL</div>`
+                : '';
+
+            return `
+            <tr>
+                <td><img src="${firstImage}" class="product-img-thumbnail"></td>
+                <td>
+                    <div class="fw-bold" style="color: #000;">${product.name}</div>
+                    <div class="text-muted small">REF: ${product.ref || '-'}</div>
+                    <div class="mt-1">
+                        <span class="badge bg-dark" style="font-size: 0.7rem;">${product.total_stock || 0} Adet Stok</span>
+                    </div>
+                </td>
+                <td><span class="badge-category">${product.category || '-'}</span></td>
+                <td>
+                    <div class="fw-bold fs-6 text-danger">${parseFloat(product.price).toLocaleString('tr-TR', { minimumFractionDigits: 2 })} TL</div>
+                    ${showOldPrice}
+                </td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-outline-dark rounded-0 fw-bold px-3 me-1" onclick="openEditProductModal(${product.id})">DÜZENLE</button>
+                    <button class="btn btn-sm btn-outline-danger rounded-0 fw-bold px-3" onclick="deleteProduct(${product.id})">SİL</button>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    function addColorRow(name = '', code = '#000000') {
+        const container = document.getElementById('colorContainer');
+        const row = document.createElement('div');
+        row.className = 'd-flex gap-2 mb-2 align-items-center color-row';
+        row.innerHTML = `
+            <input type="color" class="form-control form-control-color border-0 p-0 shadow-none color-code" value="${code}" style="width: 40px; height: 40px; cursor: pointer; border-radius: 5px;">
+            <input type="text" class="custom-input color-name" placeholder="Renk Adı (Örn: Siyah)" value="${name}" style="padding: 8px 15px;">
+            <button type="button" class="btn btn-danger rounded-0 px-3 fw-bold" style="height: 43px;" onclick="this.parentElement.remove()">X</button>
+        `;
+        container.appendChild(row);
+    }
+
+    function openAddProductModal() {
+        document.getElementById('productForm').reset();
+        document.getElementById('prodId').value = "";
+        document.getElementById('prodExistingImages').value = "";
+        document.getElementById('colorContainer').innerHTML = "";
+        document.getElementById('hasDiscount').checked = false;
+        toggleDiscount();
+
+        let nextColorGroupId = 1;
+        if (allProducts.length > 0) {
+            let maxId = Math.max(...allProducts.map(p => parseInt(p.color_group_id) || 0));
+            nextColorGroupId = maxId + 1;
+        }
+        document.getElementById('prodColorGroupId').value = nextColorGroupId;
+
+        document.getElementById('modalProductTitle').innerText = "YENİ ÜRÜN EKLE";
+        document.getElementById('saveProdBtn').innerText = "ÜRÜNÜ EKLE";
+        productModal.show();
+    }
+
+    function openEditProductModal(id) {
+        const product = allProducts.find(p => p.id == id);
+        if(!product) return;
+
+        document.getElementById('prodId').value = product.id;
+        document.getElementById('prodName').value = product.name;
+        document.getElementById('prodRef').value = product.ref || "";
+        document.getElementById('prodCategory').value = product.category || "";
+        document.getElementById('prodSizes').value = product.sizes || "";
+        document.getElementById('prodModelInfo').value = product.model_info || "";
+        document.getElementById('prodColorGroupId').value = product.color_group_id || "";
+        document.getElementById('prodExistingImages').value = product.images || "";
+        document.getElementById('prodImages').value = "";
+
+        if (product.old_price && parseFloat(product.old_price) > 0) {
+            document.getElementById('prodPrice').value = product.old_price;
+            document.getElementById('hasDiscount').checked = true;
+            document.getElementById('prodDiscountPercent').disabled = false;
+            let d_val = product.discount ? product.discount.replace(/[^0-9]/g, '') : '';
+            document.getElementById('prodDiscountPercent').value = d_val;
+        } else {
+            document.getElementById('prodPrice').value = product.price;
+            document.getElementById('hasDiscount').checked = false;
+            document.getElementById('prodDiscountPercent').disabled = true;
+            document.getElementById('prodDiscountPercent').value = '';
+        }
+        calculateFinalPrice();
+
+        document.getElementById('colorContainer').innerHTML = "";
+        if (product.colors) {
+            try { JSON.parse(product.colors).forEach(c => addColorRow(c.name, c.code)); }
+            catch(e) {}
+        }
+
+        document.getElementById('modalProductTitle').innerText = "ÜRÜNÜ DÜZENLE";
+        document.getElementById('saveProdBtn').innerText = "DEĞİŞİKLİKLERİ KAYDET";
+        productModal.show();
+    }
+
+    async function saveProduct(e) {
+        e.preventDefault();
+        const id = document.getElementById('prodId').value;
+        const isNewProduct = (!id || id.trim() === "");
+
+        const saveBtn = document.getElementById('saveProdBtn');
+        saveBtn.disabled = true;
+        saveBtn.innerText = "YÜKLENİYOR...";
+
+        const basePrice = parseFloat(document.getElementById('prodPrice').value) || 0;
+        const hasDiscount = document.getElementById('hasDiscount').checked;
+        const discPercent = parseFloat(document.getElementById('prodDiscountPercent').value) || 0;
+
+        let final_price = basePrice;
+        let old_price = '';
+        let discount_text = '';
+
+        if (hasDiscount && discPercent > 0) {
+            old_price = basePrice.toFixed(2);
+            final_price = basePrice - (basePrice * discPercent / 100);
+            discount_text = '-%' + discPercent;
+        }
+
+        let colorsArray = [];
+        document.querySelectorAll('.color-row').forEach(row => {
+            const name = row.querySelector('.color-name').value.trim();
+            const code = row.querySelector('.color-code').value;
+            if (name !== "") colorsArray.push({ name: name, code: code });
+        });
+
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('name', document.getElementById('prodName').value);
+        formData.append('ref', document.getElementById('prodRef').value);
+        formData.append('price', final_price.toFixed(2));
+        formData.append('old_price', old_price);
+        formData.append('discount', discount_text);
+        formData.append('category', document.getElementById('prodCategory').value);
+        formData.append('sizes', document.getElementById('prodSizes').value);
+        formData.append('model_info', document.getElementById('prodModelInfo').value);
+        formData.append('color_group_id', document.getElementById('prodColorGroupId').value);
+        formData.append('colors', JSON.stringify(colorsArray));
+        formData.append('existing_images', document.getElementById('prodExistingImages').value);
+
+        const fileInput = document.getElementById('prodImages');
+        for (let i = 0; i < fileInput.files.length; i++) formData.append('images[]', fileInput.files[i]);
+
+        const endpoint = isNewProduct ? '../add_product.php' : '../update_product.php';
+
+        try {
+            const res = await fetch(endpoint, { method: 'POST', body: formData });
+            const textResult = await res.text();
+
+            try {
+                const result = JSON.parse(textResult);
+                if(result.success) {
+                    productModal.hide();
+
+                    // --- SADECE YENİ EKLENEN ÜRÜNÜN STOKLARINI RANDOMİZE EDER ---
+                    if (isNewProduct) {
+                        showNotification("Ürün eklendi, stoklar oluşturuluyor...");
+                        saveBtn.innerText = "STOK EKLENİYOR...";
+
+                        // PHP'den dönen yeni ürün ID'sini alıyoruz (Eğer backend 'id' veya 'product_id' gönderiyorsa)
+                        const newProdId = result.id || result.product_id;
+
+                        if(newProdId) {
+                            // Sadece O ÜRÜNE ÖZEL istek yolluyoruz (Tüm mağazayı bozmasını engelliyoruz)
+                            await fetch('../sync_stocks.php?id=' + newProdId);
+                            await fetch('../randomize_stocks.php?id=' + newProdId);
+                        } else {
+                            // Backend ID döndürmüyorsa, en azından tüm veritabanını bozan o eski kodu çalıştırmıyoruz.
+                            console.warn("Backend yeni ürün ID'sini döndürmediği için otomatik stok çalıştırılamadı.");
+                        }
+
+                        showNotification("Yeni ürün başarıyla eklendi!");
+                    } else {
+                        showNotification("Ürün başarıyla güncellendi!");
+                    }
+
+                    loadAllProducts();
+
+                } else {
+                    showNotification("Hata: " + result.message, "error");
+                }
+            } catch (jsonError) {
+                console.error("PHP HATASI:", textResult);
+                showNotification("Sunucudan Geçersiz Yanıt Geldi.", "error");
+            }
+        } catch (error) {
+            showNotification("İnternet bağlantısı veya sunucu hatası!", "error");
+        } finally {
+            saveBtn.disabled = false; saveBtn.innerText = "ÜRÜNÜ KAYDET";
+        }
+    }
+
+    async function deleteProduct(id) {
+        if(!confirm("Emin misiniz?")) return;
+        fetch('../delete_product.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id }) })
+        .then(r=>r.json()).then(res=>{
+            if(res.success) {
+                loadAllProducts();
+                showNotification("Ürün sistemden silindi.");
+            } else {
+                showNotification(res.message, "error");
+            }
+        });
+    }
+
+    function logout() { localStorage.removeItem('user'); window.location.href = "../index.html"; }
+</script>
+</body>
+</html>
