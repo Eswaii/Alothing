@@ -9,7 +9,7 @@
 
 <p>Discover collections, explore product details, save favorites, manage your cart, and follow every order from one polished storefront.</p>
 
-<a href="http://localhost/alothing2/index.html">Open Storefront</a>
+<a href="http://localhost/alothing/index.html">Open Storefront</a>
 &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="admin/index.html">Explore Admin Panel</a>
 
@@ -130,7 +130,7 @@ There is currently no `composer.json`, SQL dump, migration system, environment f
 1. Start Apache and MySQL in XAMPP
 2. Create the alothing_db database
 3. Configure the database and SMTP settings
-4. Open http://localhost/alothing2/index.html
+4. Open http://localhost/alothing/index.html
 ```
 
 </td>
@@ -152,7 +152,7 @@ There is currently no `composer.json`, SQL dump, migration system, environment f
 ## 🗂️ Project Structure
 
 ```text
-alothing2/
+alothing/
 ├── index.html                  # Gender selection entry point
 ├── kadinAnasayfa.html          # Women's storefront
 ├── erkekAnasayfa.html          # Men's storefront
@@ -184,7 +184,7 @@ alothing2/
 1. Copy the project into the XAMPP web root:
 
 	```text
-	C:\xampp\htdocs\alothing2
+	C:\xampp\htdocs\alothing
 	```
 
 2. Start **Apache** and **MySQL** in the XAMPP Control Panel.
@@ -206,7 +206,7 @@ alothing2/
 7. Open the application through Apache, not by opening the HTML file directly:
 
 	```text
-	http://localhost/alothing2/index.html
+	http://localhost/alothing/index.html
 	```
 
 8. Create a user and set its `role` column to `admin` to access the admin interface.
