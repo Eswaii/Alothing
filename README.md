@@ -1,14 +1,39 @@
 <div align="center">
 
+<img src="images/giris/kadin_2.jpg" alt="ALOTHING fashion storefront" width="48%" />
+<img src="images/giris/erkek_2.jpg" alt="ALOTHING men's collection" width="48%" />
+
 # ALOTHING
 
-### Fashion E-Commerce Storefront and Administration Panel
+### A considered fashion commerce experience for every wardrobe
 
-ALOTHING is a full-stack fashion shopping experience built with vanilla HTML, CSS, and JavaScript on the frontend and PHP/MySQL on the backend. It provides separate women's and men's storefronts, product discovery, favorites, cart and checkout workflows, customer accounts, order tracking, stock management, support messaging, and an administrator command center.
+<p>Discover collections, explore product details, save favorites, manage your cart, and follow every order from one polished storefront.</p>
+
+<a href="http://localhost/alothing2/index.html">Open Storefront</a>
+&nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="admin/index.html">Explore Admin Panel</a>
+
+<br><br>
+
+![PHP](https://img.shields.io/badge/PHP-8%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111111)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 </div>
 
-> **Project status:** This is a functional local-development e-commerce application. It is not production-ready without the security, configuration, payment, and database hardening described in [Production Considerations](#production-considerations).
+<br>
+
+<table align="center">
+<tr>
+<td align="center" width="25%"><strong>01</strong><br><sub>Curated storefronts</sub></td>
+<td align="center" width="25%"><strong>02</strong><br><sub>Complete shopping flow</sub></td>
+<td align="center" width="25%"><strong>03</strong><br><sub>Customer self-service</sub></td>
+<td align="center" width="25%"><strong>04</strong><br><sub>Operations command center</sub></td>
+</tr>
+</table>
+
+> **Project status** — A functional local-development e-commerce application. Before production use, complete the security, configuration, payment, and database hardening described in [Production Considerations](#production-considerations).
 
 ## Contents
 
@@ -27,18 +52,33 @@ ALOTHING is a full-stack fashion shopping experience built with vanilla HTML, CS
 - [Production Considerations](#production-considerations)
 - [Known Limitations](#known-limitations)
 
+## Product Experience
+
+ALOTHING brings the complete shopping journey into one coherent flow:
+
+```mermaid
+flowchart LR
+	A[Collection landing] --> B[Browse and search]
+	B --> C[Product detail]
+	C --> D{Saved?}
+	D -->|Yes| E[Favorites]
+	D -->|No| F[Cart]
+	E --> F
+	F --> G[Checkout]
+	G --> H[Order confirmation]
+	H --> I[Tracking and account]
+	I --> J[Support, returns, or cancellation]
+```
+
 ## Highlights
 
-- Gender-focused entry point for women's and men's collections.
-- Product catalog with categories, search, colors, sizes, discounts, galleries, related products, and model information.
-- Product detail pages with image galleries, fullscreen viewing, autoplay, favorites, ratings, comments, and restock requests.
-- Client-side cart with quantity and size selection, coupon support, shipping calculation, and order summary.
-- Customer accounts with profile management, saved addresses, order history, cancellation and return requests, support messages, and password/email changes.
-- Order confirmation and status emails through PHPMailer and Gmail SMTP.
-- Public order tracking by order/tracking code.
-- Admin dashboard with sales summaries, recent orders, popular products, customer counts, and Chart.js visualizations.
-- Admin CRUD tools for products, users, coupons, messages, comments, orders, and size-based stock.
-- Responsive layouts using Bootstrap and custom CSS.
+| Shopping | Account | Operations |
+| --- | --- | --- |
+| Women's and men's collections | Profile and saved addresses | Dashboard analytics |
+| Search, categories, variants, and discounts | Order history and details | Product and image management |
+| Galleries, favorites, reviews, and restock requests | Cancellation and return requests | Size-level stock control |
+| Cart, coupons, shipping, and checkout | Password and email changes | Orders, coupons, users, messages, and comments |
+| Public order tracking | Contact and support messages | Status updates and notifications |
 
 ## Application Areas
 
