@@ -370,13 +370,14 @@ At minimum, address the following before handling real customers or payments:
 For customer questions, use `contact.html` and follow replies from the account message area. For development issues, open a GitHub Issue or add the project maintainer's details below before publishing this repository:
 
 ```text
-Maintainer: [Yasin "Eswaii" Şahin]
+Maintainer: [Yasin Şahin (Eswaii)]
 Email:      [yasinsahintr@outlook.com]
 Repository: [https://github.com/Eswaii/Alothing]
 ```
 
-
 ## 📄 License
 
-No license file is currently included. Add a license before distributing or deploying the project publicly.
+Copyright © 2026 Yasin Şahin. All rights reserved.
+
+No license is granted for copying, modifying, distributing, or using this project without the author's written permission. Third-party components, including Bootstrap, Lightbox, Chart.js, and PHPMailer, remain subject to their respective licenses.
 
