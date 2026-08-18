@@ -35,7 +35,7 @@
 
 > **Project status** — A functional local-development e-commerce application. Before production use, complete the security, configuration, payment, and database hardening described in [Production Considerations](#production-considerations).
 
-## Contents
+## 📚 Contents
 
 - [Highlights](#highlights)
 - [Application Areas](#application-areas)
@@ -51,8 +51,9 @@
 - [Development Notes](#development-notes)
 - [Production Considerations](#production-considerations)
 - [Known Limitations](#known-limitations)
+- [Contact and Support](#contact-and-support)
 
-## Product Experience
+## ✨ Product Experience
 
 ALOTHING brings the complete shopping journey into one coherent flow:
 
@@ -70,7 +71,7 @@ flowchart LR
 	I --> J[Support, returns, or cancellation]
 ```
 
-## Highlights
+## 🛍️ Highlights
 
 | Shopping | Account | Operations |
 | --- | --- | --- |
@@ -80,9 +81,9 @@ flowchart LR
 | Cart, coupons, shipping, and checkout | Password and email changes | Orders, coupons, users, messages, and comments |
 | Public order tracking | Contact and support messages | Status updates and notifications |
 
-## Application Areas
+## 🧭 Application Areas
 
-### Customer storefront
+### 👗 Customer storefront
 
 | Area | Pages | Capabilities |
 | --- | --- | --- |
@@ -96,7 +97,7 @@ flowchart LR
 
 Shared navigation and footer markup are loaded from `navbar.html` and `footer.html` by the frontend scripts.
 
-### Administration
+### 🧰 Administration
 
 The `admin/` directory contains the management interface:
 
@@ -109,7 +110,7 @@ The `admin/` directory contains the management interface:
 - `messages.html`: read customer support messages and send replies.
 - `comments.html`: approve, reject, hide, or republish product comments.
 
-## Technology Stack
+## ⚙️ Technology Stack
 
 - **Frontend:** HTML5, CSS3, vanilla JavaScript, Bootstrap 5 assets, Lightbox, and Chart.js via CDN in the admin dashboard.
 - **Backend:** PHP endpoint scripts using `mysqli`, JSON request/response bodies, PHP sessions, and password hashing.
@@ -119,7 +120,36 @@ The `admin/` directory contains the management interface:
 
 There is currently no `composer.json`, SQL dump, migration system, environment file, automated test suite, or build step.
 
-## Project Structure
+<table>
+<tr>
+<td width="50%">
+
+### 🚀 Quick start
+
+```text
+1. Start Apache and MySQL in XAMPP
+2. Create the alothing_db database
+3. Configure the database and SMTP settings
+4. Open http://localhost/alothing2/index.html
+```
+
+</td>
+<td width="50%">
+
+### 🖥️ Environment
+
+| Service | Local value |
+| --- | --- |
+| Web server | Apache |
+| Database | MySQL / MariaDB |
+| PHP API | PHP 8+ |
+| Mail transport | Gmail SMTP / STARTTLS |
+
+</td>
+</tr>
+</table>
+
+## 🗂️ Project Structure
 
 ```text
 alothing2/
@@ -141,7 +171,7 @@ alothing2/
 └── README.md
 ```
 
-## Requirements
+## ✅ Requirements
 
 - Windows with [XAMPP](https://www.apachefriends.org/), including Apache, PHP, and MySQL/MariaDB.
 - PHP extensions for `mysqli`, JSON, sessions, password hashing, and OpenSSL.
@@ -149,7 +179,7 @@ alothing2/
 - A browser with JavaScript enabled.
 - Gmail SMTP credentials or another SMTP service configured in the mail scripts.
 
-## Local Installation
+## 💻 Local Installation
 
 1. Copy the project into the XAMPP web root:
 
@@ -181,7 +211,7 @@ alothing2/
 
 8. Create a user and set its `role` column to `admin` to access the admin interface.
 
-## Database
+## 🗄️ Database
 
 The following schema is inferred from the SQL used by the application. Column types should be selected and indexed appropriately when creating the database.
 
@@ -202,7 +232,7 @@ The following schema is inferred from the SQL used by the application. Column ty
 
 `register.php` writes `full_name`, while other account operations also refer to `name` and `surname`. Reconcile this naming convention in the database and PHP endpoints before relying on profile data. Product categories, images, and sizes are currently stored as comma-separated values, colors may be JSON, and order items are stored as JSON text.
 
-## Email Configuration
+## ✉️ Email Configuration
 
 `send_mail.php` exposes the `sendOrderEmail($to, $subject, $htmlContent)` helper. PHPMailer is used for:
 
@@ -222,7 +252,7 @@ Authentication: enabled
 
 Before using the application, replace the hard-coded account values in `send_mail.php` and `forgot_password.php` with a Gmail app password or another SMTP provider. Do not commit real credentials. The sender address and links in email templates should also be changed from local development values to the deployed HTTPS domain.
 
-## How the Main Flows Work
+## 🔄 How the Main Flows Work
 
 ### Authentication
 
@@ -240,7 +270,7 @@ Before using the application, replace the hard-coded account values in `send_mai
 
 Administrators can update an order status through `update_status.php`. When an order is marked as shipped, a tracking code is generated. Customers can view their order details in the account area or use `track_order.php` through `order-tracking.html`.
 
-## API Reference
+## 🔌 API Reference
 
 All endpoints are plain PHP scripts. Most write operations expect JSON in the request body; read operations generally use query parameters and return JSON.
 
@@ -288,7 +318,7 @@ All endpoints are plain PHP scripts. Most write operations expect JSON in the re
 | `submit_contact.php`, `get_my_messages.php` | POST/GET | Submit and view customer support messages. |
 | `get_all_messages.php`, `reply_message.php` | GET/POST | Admin support inbox and replies. |
 
-## Development Notes
+## 🛠️ Development Notes
 
 - Use Apache URLs for all testing because PHP and `fetch()` calls are not supported correctly from `file://` pages.
 - The frontend uses browser `localStorage` for cart, favorites/session display state, and search history; clearing site data removes that local state.
@@ -297,9 +327,16 @@ All endpoints are plain PHP scripts. Most write operations expect JSON in the re
 - `randomize_stocks.php` is intended for development/testing and should not be exposed in a live deployment.
 - Browser-side admin redirects are convenience UI behavior, not a security boundary.
 
-## Production Considerations
+## ⚠️ Production Considerations
 
-**Do not deploy the current codebase as-is.** At minimum, address the following before handling real customers or payments:
+<table>
+<tr>
+<td><strong>Warning</strong><br>Do not deploy the current codebase as-is.</td>
+<td>Complete the security, payment, configuration, and database hardening below before handling real customers or payments.</td>
+</tr>
+</table>
+
+At minimum, address the following before handling real customers or payments:
 
 1. Move database and SMTP credentials into server-only environment/configuration variables and rotate any credentials already present in source files.
 2. Add server-side session and role authorization to every admin endpoint. Do not rely on `localStorage` or a client-supplied email address for authorization.
@@ -311,18 +348,38 @@ All endpoints are plain PHP scripts. Most write operations expect JSON in the re
 8. Add a versioned schema/migration file, seed data, backups, deployment configuration, and automated tests.
 9. Review policy pages against the actual implementation. References to payment, SSL, carrier, or third-party integrations must match services that are genuinely configured.
 
-## Known Limitations
+## 📌 Known Limitations
 
-- No payment gateway is implemented.
-- No database schema or seed file is included.
-- No automated tests or dependency lockfile are included.
-- Some endpoint authorization relies on values supplied by the browser.
-- Order totals and line items are currently accepted from the client and require server-side verification for production.
-- Stock deduction is not fully transactional under concurrent orders.
-- The current code contains development-oriented error output and local URLs.
-- `login.js` references a logout flow, but a dedicated `logout.php` endpoint is not present in the repository.
+| Status | Detail |
+| --- | --- |
+| Not implemented | No payment gateway is implemented. |
+| Not included | No database schema, seed file, automated tests, or dependency lockfile is included. |
+| Security gap | Some endpoint authorization relies on values supplied by the browser. |
+| Validation gap | Order totals and line items are accepted from the client and require server-side verification. |
+| Consistency gap | Stock deduction is not fully transactional under concurrent orders. |
+| Development-only | Error output and local URLs remain in the current codebase. |
+| Missing endpoint | `login.js` references a logout flow, but `logout.php` is not present. |
 
-## License
+## 📬 Contact and Support
+
+<table>
+<tr>
+<td align="center" width="33%"><strong>Project</strong><br><sub>ALOTHING</sub></td>
+<td align="center" width="33%"><strong>Support</strong><br><sub>Use the in-app contact form</sub></td>
+<td align="center" width="33%"><strong>Admin access</strong><br><sub>Open <code>admin/index.html</code></sub></td>
+</tr>
+</table>
+
+For customer questions, use `contact.html` and follow replies from the account message area. For development issues, open a GitHub Issue or add the project maintainer's details below before publishing this repository:
+
+```text
+Maintainer: [Yasin "Eswaii" Şahin]
+Email:      [yasinsahintr@outlook.com]
+Repository: [https://github.com/Eswaii/Alothing]
+```
+
+
+## 📄 License
 
 No license file is currently included. Add a license before distributing or deploying the project publicly.
 
